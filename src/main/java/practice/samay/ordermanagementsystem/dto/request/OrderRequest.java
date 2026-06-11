@@ -22,7 +22,7 @@ public class OrderRequest {
 
     @NotBlank(message = "Customer name is required")
     @Size(min = 2, max = 100, message = "Customer name must be between 2 and 100 characters")
-    @Schema(description = "Full name of the customer", example = "Samay Sharma")
+    @Schema(description = "Full name of the customer", example = "Samay")
     private String customerName;
 
     @NotBlank(message = "Customer email is required")

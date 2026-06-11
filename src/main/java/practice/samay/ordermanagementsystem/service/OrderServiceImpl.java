@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import practice.samay.ordermanagementsystem.cache.InventoryCacheService;
+import practice.samay.ordermanagementsystem.cache.OrderCacheService;
 import practice.samay.ordermanagementsystem.dao.InventoryDao;
 import practice.samay.ordermanagementsystem.dao.OrderDao;
 import practice.samay.ordermanagementsystem.dto.request.OrderRequest;
@@ -30,6 +32,9 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderDao orderDao;
     private final InventoryDao inventoryDao;
+    private final OrderCacheService orderCacheService;
+    private final InventoryCacheService inventoryCacheService;
+    private final HistoryEventPublisher historyEventPublisher;
 
 
     @Override
@@ -38,9 +43,12 @@ public class OrderServiceImpl implements OrderService {
         log.info("Creating order for customer: {} | product: {}", request.getCustomerEmail(), request.getProductCode());
 
         // Validate inventory existence
-        Inventory inventory = inventoryDao.findByProductCode(request.getProductCode())
+        Inventory inventory = inventoryCacheService.getByProductCode(request.getProductCode())
+            .or(() -> inventoryDao.findByProductCode(request.getProductCode()))
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Product not found in inventory: " + request.getProductCode()));
+
+        inventoryCacheService.cacheSnapshot(inventory);
 
         // Validate sufficient stock
         if (inventory.getAvailableQuantity() < request.getQuantity()) {
@@ -79,30 +87,54 @@ public class OrderServiceImpl implements OrderService {
         inventory.setReservedQuantity(inventory.getReservedQuantity() + request.getQuantity());
         inventoryDao.update(inventory);
 
+        OrderResponse orderResponse = toResponse(savedOrder);
+        orderCacheService.cacheSnapshot(orderResponse);
+        orderCacheService.evictListCaches();
+        inventoryCacheService.cacheSnapshot(inventory);
+        historyEventPublisher.publish("ORDER", savedOrder.getId(), "CREATE", orderResponse);
+        historyEventPublisher.publish("INVENTORY", inventory.getId(), "UPDATE", inventory);
+
         log.info("Order created successfully: {} | Total: ₹{}", savedOrder.getOrderNumber(), totalAmount);
-        return toResponse(savedOrder);
+        return orderResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public OrderResponse getOrderById(Long id) {
         log.debug("Fetching order by id: {}", id);
-        return toResponse(findOrderOrThrow(id));
+        OrderResponse cachedOrder = orderCacheService.getById(id).orElse(null);
+        if (cachedOrder != null) {
+            return cachedOrder;
+        }
+        OrderResponse orderResponse = toResponse(findOrderOrThrow(id));
+        orderCacheService.cacheSnapshot(orderResponse);
+        return orderResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public OrderResponse getOrderByOrderNumber(String orderNumber) {
         log.debug("Fetching order by number: {}", orderNumber);
-        return toResponse(orderDao.findByOrderNumber(orderNumber)
+        OrderResponse cachedOrder = orderCacheService.getByOrderNumber(orderNumber).orElse(null);
+        if (cachedOrder != null) {
+            return cachedOrder;
+        }
+
+        OrderResponse orderResponse = toResponse(orderDao.findByOrderNumber(orderNumber)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found with number: " + orderNumber)));
+        orderCacheService.cacheSnapshot(orderResponse);
+        return orderResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<OrderResponse> getAllOrders() {
         log.debug("Fetching all orders");
-        return orderDao.findAll().stream().map(this::toResponse).collect(Collectors.toList());
+        return orderCacheService.getAll().orElseGet(() -> {
+            List<OrderResponse> orders = orderDao.findAll().stream().map(this::toResponse).collect(Collectors.toList());
+            orderCacheService.cacheAll(orders);
+            return orders;
+        });
     }
 
     @Override
@@ -111,7 +143,11 @@ public class OrderServiceImpl implements OrderService {
         log.debug("Fetching orders with status: {}", status);
         try {
             OrderStatus orderStatus = OrderStatus.valueOf(status.toUpperCase());
-            return orderDao.findByStatus(orderStatus).stream().map(this::toResponse).collect(Collectors.toList());
+            return orderCacheService.getByStatus(orderStatus).orElseGet(() -> {
+                List<OrderResponse> orders = orderDao.findByStatus(orderStatus).stream().map(this::toResponse).collect(Collectors.toList());
+                orderCacheService.cacheByStatus(orderStatus, orders);
+                return orders;
+            });
         } catch (IllegalArgumentException e) {
             throw new BusinessException("Invalid order status: " + status);
         }
@@ -126,8 +162,12 @@ public class OrderServiceImpl implements OrderService {
             OrderStatus newStatus = OrderStatus.valueOf(status.toUpperCase());
             order.setStatus(newStatus);
             Order updated = orderDao.update(order);
+            OrderResponse orderResponse = toResponse(updated);
+            orderCacheService.cacheSnapshot(orderResponse);
+            orderCacheService.evictListCaches();
+            historyEventPublisher.publish("ORDER", updated.getId(), "UPDATE", orderResponse);
             log.info("Order {} status updated to: {}", id, newStatus);
-            return toResponse(updated);
+            return orderResponse;
         } catch (IllegalArgumentException e) {
             throw new BusinessException("Invalid order status: " + status +
                     ". Valid values: PENDING, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, CANCELLED");
@@ -152,15 +192,22 @@ public class OrderServiceImpl implements OrderService {
         }
 
         // Restore reserved inventory
-        inventoryDao.findByProductCode(order.getProductCode()).ifPresent(inventory -> {
+        inventoryCacheService.getByProductCode(order.getProductCode())
+                .or(() -> inventoryDao.findByProductCode(order.getProductCode()))
+                .ifPresent(inventory -> {
             inventory.setAvailableQuantity(inventory.getAvailableQuantity() + order.getQuantity());
             inventory.setReservedQuantity(Math.max(0, inventory.getReservedQuantity() - order.getQuantity()));
             inventoryDao.update(inventory);
+            inventoryCacheService.cacheSnapshot(inventory);
             log.debug("Restored {} units to inventory for product: {}", order.getQuantity(), order.getProductCode());
         });
 
         order.setStatus(OrderStatus.CANCELLED);
-        orderDao.update(order);
+        Order updated = orderDao.update(order);
+        OrderResponse orderResponse = toResponse(updated);
+        orderCacheService.cacheSnapshot(orderResponse);
+        orderCacheService.evictListCaches();
+        historyEventPublisher.publish("ORDER", updated.getId(), "UPDATE", orderResponse);
         log.info("Order {} cancelled successfully", order.getOrderNumber());
     }
 

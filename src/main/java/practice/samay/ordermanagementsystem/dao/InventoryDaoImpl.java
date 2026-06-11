@@ -1,5 +1,6 @@
 package practice.samay.ordermanagementsystem.dao;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -11,9 +12,7 @@ import practice.samay.ordermanagementsystem.model.Inventory;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Hibernate SessionFactory-based implementation of InventoryDao.
- */
+
 @Repository
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class InventoryDaoImpl implements InventoryDao {

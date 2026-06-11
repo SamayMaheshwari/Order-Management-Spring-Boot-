@@ -1,168 +1,1589 @@
-2026-06-09 22:54:56.526 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
-2026-06-09 22:54:56.619 [main] INFO  p.s.o.OrderManagementSystemApplication - Starting OrderManagementSystemApplication using Java 21.0.2 with PID 6560 (E:\SPRINGBOOT\order-management-system\target\classes started by Sharad in E:\SPRINGBOOT\order-management-system)
-2026-06-09 22:54:56.621 [main] DEBUG p.s.o.OrderManagementSystemApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
-2026-06-09 22:54:56.624 [main] INFO  p.s.o.OrderManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
-2026-06-09 22:54:58.016 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-09 22:54:58.065 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 JPA repository interfaces.
-2026-06-09 22:54:58.822 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-06-09 22:54:58.840 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-06-09 22:54:58.842 [main] INFO  o.apache.catalina.core.StandardService - Starting service [Tomcat]
-2026-06-09 22:54:58.842 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
-2026-06-09 22:54:58.930 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-06-09 22:54:58.930 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2241 ms
-2026-06-09 22:54:59.057 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Starting...
-2026-06-09 22:55:00.232 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSeeder' defined in file [E:\SPRINGBOOT\order-management-system\target\classes\practice\samay\ordermanagementsystem\config\DataSeeder.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'inventoryDaoImpl' defined in file [E:\SPRINGBOOT\order-management-system\target\classes\practice\samay\ordermanagementsystem\dao\InventoryDaoImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [practice/samay/ordermanagementsystem/config/HikariConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception with message: Failed to initialize pool: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-2026-06-09 22:55:00.238 [main] INFO  o.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2026-06-09 22:55:00.254 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-06-09 22:55:00.287 [main] ERROR o.springframework.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSeeder' defined in file [E:\SPRINGBOOT\order-management-system\target\classes\practice\samay\ordermanagementsystem\config\DataSeeder.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'inventoryDaoImpl' defined in file [E:\SPRINGBOOT\order-management-system\target\classes\practice\samay\ordermanagementsystem\dao\InventoryDaoImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [practice/samay/ordermanagementsystem/config/HikariConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception with message: Failed to initialize pool: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1228)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1194)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1130)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:991)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:628)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
-	at practice.samay.ordermanagementsystem.OrderManagementSystemApplication.main(OrderManagementSystemApplication.java:10)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inventoryDaoImpl' defined in file [E:\SPRINGBOOT\order-management-system\target\classes\practice\samay\ordermanagementsystem\dao\InventoryDaoImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [practice/samay/ordermanagementsystem/config/HikariConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception with message: Failed to initialize pool: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1770)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 21 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [practice/samay/ordermanagementsystem/config/HikariConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception with message: Failed to initialize pool: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:546)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1708)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 35 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [practice/samay/ordermanagementsystem/config/HikariConfig.class]: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception with message: Failed to initialize pool: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:489)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1708)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 50 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception with message: Failed to initialize pool: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:200)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:89)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:169)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
-	... 63 common frames omitted
-Caused by: com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at com.zaxxer.hikari.pool.HikariPool.throwPoolInitializationException(HikariPool.java:610)
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:597)
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97)
-	at com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80)
-	at practice.samay.ordermanagementsystem.config.HikariConfig.dataSource(HikariConfig.java:48)
-	at practice.samay.ordermanagementsystem.config.HikariConfig$$SpringCGLIB$$0.CGLIB$dataSource$0(<generated>)
-	at practice.samay.ordermanagementsystem.config.HikariConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
-	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
-	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:400)
-	at practice.samay.ordermanagementsystem.config.HikariConfig$$SpringCGLIB$$0.dataSource(<generated>)
+2026-06-11 11:54:11.880 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-06-11 11:54:11.914 [main] INFO  p.s.o.OrderManagementSystemApplication - Starting OrderManagementSystemApplication using Java 21.0.11 with PID 64702 (/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes started by samay.maheshwari in /home/samay.maheshwari/SPRINGBOOT/order-management-system)
+2026-06-11 11:54:11.915 [main] DEBUG p.s.o.OrderManagementSystemApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-11 11:54:11.916 [main] INFO  p.s.o.OrderManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-11 11:54:12.335 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-11 11:54:12.348 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+2026-06-11 11:54:12.570 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-11 11:54:12.579 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-11 11:54:12.580 [main] INFO  o.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-11 11:54:12.580 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-11 11:54:12.598 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-11 11:54:12.598 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 650 ms
+2026-06-11 11:54:12.637 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Starting...
+2026-06-11 11:54:12.712 [main] INFO  com.zaxxer.hikari.pool.HikariPool - OrderManagementPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@6f96dd64
+2026-06-11 11:54:12.713 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Start completed.
+2026-06-11 11:54:12.744 [main] INFO  o.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-11 11:54:12.768 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-06-11 11:54:12.784 [main] INFO  o.h.c.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-11 11:54:12.901 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-11 11:54:12.926 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-11 11:54:12.932 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (OrderManagementPool)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-11 11:54:12.935 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@1c815814) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@14af73e1)
+2026-06-11 11:54:12.935 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@73da303e) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@24068086)
+2026-06-11 11:54:12.935 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@32513dea) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5d0e703a)
+2026-06-11 11:54:12.935 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7f77e065) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@6f655dbd)
+2026-06-11 11:54:12.935 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@546083d6) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7ac1b6c0)
+2026-06-11 11:54:12.935 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3a751535) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7fb82f73)
+2026-06-11 11:54:12.935 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@2f166d61) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5896b9f5)
+2026-06-11 11:54:12.935 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@4ad8d36f) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@74a5bef0)
+2026-06-11 11:54:12.935 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@68c4a860) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@570ed9c)
+2026-06-11 11:54:13.316 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-11 11:54:13.338 [main] DEBUG org.hibernate.SQL - 
+    alter table orders 
+       modify column status enum ('CANCELLED','CONFIRMED','DELIVERED','PENDING','PROCESSING','SHIPPED') not null
+2026-06-11 11:54:13.347 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column payment_method enum ('CASH_ON_DELIVERY','CREDIT_CARD','DEBIT_CARD','NET_BANKING','UPI','WALLET') not null
+2026-06-11 11:54:13.350 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column status enum ('COMPLETED','FAILED','PENDING','REFUNDED') not null
+2026-06-11 11:54:13.355 [main] DEBUG org.hibernate.SQL - 
+    alter table shipments 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED') not null
+2026-06-11 11:54:13.359 [main] DEBUG org.hibernate.SQL - 
+    alter table tracking_events 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED')
+2026-06-11 11:54:13.367 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-11 11:54:13.662 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-11 11:54:13.671 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-11 11:54:13.675 [main] INFO  p.s.o.OrderManagementSystemApplication - Started OrderManagementSystemApplication in 2.037 seconds (process running for 2.435)
+2026-06-11 11:55:07.617 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-11 11:55:07.617 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-11 11:55:07.617 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-06-11 11:55:07.797 [http-nio-8080-exec-3] ERROR p.s.o.exception.GlobalExceptionHandler - Unexpected error occurred: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)'
+jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)'
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1104)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)'
+	at org.springdoc.core.service.GenericResponseService.lambda$getGenericMapResponse$8(GenericResponseService.java:706)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:178)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:575)
+	at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)
+	at java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)
+	at org.springdoc.core.service.GenericResponseService.getGenericMapResponse(GenericResponseService.java:708)
+	at org.springdoc.core.service.GenericResponseService.build(GenericResponseService.java:247)
+	at org.springdoc.api.AbstractOpenApiResource.calculatePath(AbstractOpenApiResource.java:499)
+	at org.springdoc.api.AbstractOpenApiResource.calculatePath(AbstractOpenApiResource.java:676)
+	at org.springdoc.webmvc.api.OpenApiResource.lambda$calculatePath$11(OpenApiResource.java:220)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at org.springdoc.webmvc.api.OpenApiResource.calculatePath(OpenApiResource.java:201)
+	at org.springdoc.webmvc.api.OpenApiResource.lambda$getPaths$2(OpenApiResource.java:171)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at org.springdoc.webmvc.api.OpenApiResource.getPaths(OpenApiResource.java:150)
+	at org.springdoc.api.AbstractOpenApiResource.getOpenApi(AbstractOpenApiResource.java:353)
+	at org.springdoc.webmvc.api.OpenApiResource.openapiJson(OpenApiResource.java:125)
+	at org.springdoc.webmvc.api.OpenApiWebMvcResource.openapiJson(OpenApiWebMvcResource.java:114)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:172)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	... 39 common frames omitted
+2026-06-11 11:57:23.698 [http-nio-8080-exec-4] ERROR p.s.o.exception.GlobalExceptionHandler - Unexpected error occurred: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)'
+jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)'
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1104)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)'
+	at org.springdoc.core.service.GenericResponseService.lambda$getGenericMapResponse$8(GenericResponseService.java:706)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:178)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:575)
+	at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)
+	at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)
+	at java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)
+	at org.springdoc.core.service.GenericResponseService.getGenericMapResponse(GenericResponseService.java:708)
+	at org.springdoc.core.service.GenericResponseService.build(GenericResponseService.java:247)
+	at org.springdoc.api.AbstractOpenApiResource.calculatePath(AbstractOpenApiResource.java:499)
+	at org.springdoc.api.AbstractOpenApiResource.calculatePath(AbstractOpenApiResource.java:676)
+	at org.springdoc.webmvc.api.OpenApiResource.lambda$calculatePath$11(OpenApiResource.java:220)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at org.springdoc.webmvc.api.OpenApiResource.calculatePath(OpenApiResource.java:201)
+	at org.springdoc.webmvc.api.OpenApiResource.lambda$getPaths$2(OpenApiResource.java:171)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at org.springdoc.webmvc.api.OpenApiResource.getPaths(OpenApiResource.java:150)
+	at org.springdoc.api.AbstractOpenApiResource.getOpenApi(AbstractOpenApiResource.java:353)
+	at org.springdoc.webmvc.api.OpenApiResource.openapiJson(OpenApiResource.java:125)
+	at org.springdoc.webmvc.api.OpenApiWebMvcResource.openapiJson(OpenApiWebMvcResource.java:114)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	... 39 common frames omitted
+2026-06-11 11:57:23.737 [http-nio-8080-exec-5] ERROR p.s.o.exception.GlobalExceptionHandler - Unexpected error occurred: No static resource favicon.ico.
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:584)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-06-11 12:00:54.101 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-11 12:00:54.102 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-11 12:00:54.106 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-11 12:00:54.108 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown initiated...
+2026-06-11 12:00:54.113 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown completed.
+2026-06-11 12:01:15.373 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-06-11 12:01:15.410 [main] INFO  p.s.o.OrderManagementSystemApplication - Starting OrderManagementSystemApplication using Java 21.0.11 with PID 65956 (/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes started by samay.maheshwari in /home/samay.maheshwari/SPRINGBOOT/order-management-system)
+2026-06-11 12:01:15.410 [main] DEBUG p.s.o.OrderManagementSystemApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-11 12:01:15.411 [main] INFO  p.s.o.OrderManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-11 12:01:15.734 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-11 12:01:15.743 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces.
+2026-06-11 12:01:15.923 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-11 12:01:15.927 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-11 12:01:15.928 [main] INFO  o.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-11 12:01:15.928 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-11 12:01:15.949 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-11 12:01:15.950 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 517 ms
+2026-06-11 12:01:16.002 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Starting...
+2026-06-11 12:01:16.070 [main] INFO  com.zaxxer.hikari.pool.HikariPool - OrderManagementPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f2b39a
+2026-06-11 12:01:16.070 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Start completed.
+2026-06-11 12:01:16.100 [main] INFO  o.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-11 12:01:16.117 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-06-11 12:01:16.128 [main] INFO  o.h.c.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-11 12:01:16.248 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-11 12:01:16.282 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-11 12:01:16.293 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (OrderManagementPool)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-11 12:01:16.296 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6ffbf0ac) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@ad5cffa)
+2026-06-11 12:01:16.296 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@237aa0c7) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@1b8ee69d)
+2026-06-11 12:01:16.296 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@2b400bd0) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@fceab5d)
+2026-06-11 12:01:16.296 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@79445efb) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1592e540)
+2026-06-11 12:01:16.296 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3e2772a9) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@4449b273)
+2026-06-11 12:01:16.296 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1fa18f87) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1d9bd1d6)
+2026-06-11 12:01:16.296 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@18ac4af6) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@117fb9ba)
+2026-06-11 12:01:16.296 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@2b1d1a5) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@41e7a544)
+2026-06-11 12:01:16.296 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3b66ac74) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@573870cb)
+2026-06-11 12:01:16.719 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-11 12:01:16.741 [main] DEBUG org.hibernate.SQL - 
+    alter table orders 
+       modify column status enum ('CANCELLED','CONFIRMED','DELIVERED','PENDING','PROCESSING','SHIPPED') not null
+2026-06-11 12:01:16.749 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column payment_method enum ('CASH_ON_DELIVERY','CREDIT_CARD','DEBIT_CARD','NET_BANKING','UPI','WALLET') not null
+2026-06-11 12:01:16.755 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column status enum ('COMPLETED','FAILED','PENDING','REFUNDED') not null
+2026-06-11 12:01:16.761 [main] DEBUG org.hibernate.SQL - 
+    alter table shipments 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED') not null
+2026-06-11 12:01:16.766 [main] DEBUG org.hibernate.SQL - 
+    alter table tracking_events 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED')
+2026-06-11 12:01:16.776 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-11 12:01:17.092 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-11 12:01:17.097 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-11 12:01:17.101 [main] INFO  p.s.o.OrderManagementSystemApplication - Started OrderManagementSystemApplication in 1.883 seconds (process running for 2.452)
+2026-06-11 12:01:55.742 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-11 12:01:55.742 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-11 12:01:55.742 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-06-11 12:01:56.185 [http-nio-8080-exec-3] INFO  o.springdoc.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 334 ms
+2026-06-11 12:02:52.746 [http-nio-8080-exec-4] DEBUG p.s.o.controller.OrderController - GET /api/v1/orders
+2026-06-11 12:02:52.773 [http-nio-8080-exec-4] DEBUG p.s.o.service.OrderServiceImpl - Fetching all orders
+2026-06-11 12:02:52.773 [http-nio-8080-exec-4] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Fetching all orders
+2026-06-11 12:02:52.776 [http-nio-8080-exec-4] ERROR p.s.o.exception.GlobalExceptionHandler - Unexpected error occurred: No CurrentSessionContext configured
+org.springframework.orm.jpa.JpaSystemException: No CurrentSessionContext configured
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:348)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:560)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:343)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at practice.samay.ordermanagementsystem.dao.OrderDaoImpl$$SpringCGLIB$$0.findAll(<generated>)
+	at practice.samay.ordermanagementsystem.service.OrderServiceImpl.getAllOrders(OrderServiceImpl.java:105)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at practice.samay.ordermanagementsystem.service.OrderServiceImpl$$SpringCGLIB$$0.getAllOrders(<generated>)
+	at practice.samay.ordermanagementsystem.controller.OrderController.getAllOrders(OrderController.java:57)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.hibernate.HibernateException: No CurrentSessionContext configured
+	at org.hibernate.internal.SessionFactoryImpl.getCurrentSession(SessionFactoryImpl.java:660)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.invokeProxyMethod(AbstractEntityManagerFactoryBean.java:529)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean$ManagedEntityManagerFactoryInvocationHandler.invoke(AbstractEntityManagerFactoryBean.java:750)
+	at jdk.proxy2/jdk.proxy2.$Proxy123.getCurrentSession(Unknown Source)
+	at practice.samay.ordermanagementsystem.dao.OrderDaoImpl.findAll(OrderDaoImpl.java:61)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	... 63 common frames omitted
+2026-06-11 12:03:12.920 [http-nio-8080-exec-5] INFO  p.s.o.controller.OrderController - POST /api/v1/orders – customer: samay@example.com
+2026-06-11 12:03:12.921 [http-nio-8080-exec-5] INFO  p.s.o.service.OrderServiceImpl - Creating order for customer: samay@example.com | product: PROD-001
+2026-06-11 12:03:12.921 [http-nio-8080-exec-5] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Finding inventory by product code: PROD-001
+2026-06-11 12:03:12.923 [http-nio-8080-exec-5] ERROR p.s.o.exception.GlobalExceptionHandler - Unexpected error occurred: No CurrentSessionContext configured
+org.springframework.orm.jpa.JpaSystemException: No CurrentSessionContext configured
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:348)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:560)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:343)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at practice.samay.ordermanagementsystem.dao.InventoryDaoImpl$$SpringCGLIB$$0.findByProductCode(<generated>)
+	at practice.samay.ordermanagementsystem.service.OrderServiceImpl.createOrder(OrderServiceImpl.java:41)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at practice.samay.ordermanagementsystem.service.OrderServiceImpl$$SpringCGLIB$$0.createOrder(<generated>)
+	at practice.samay.ordermanagementsystem.controller.OrderController.createOrder(OrderController.java:43)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.hibernate.HibernateException: No CurrentSessionContext configured
+	at org.hibernate.internal.SessionFactoryImpl.getCurrentSession(SessionFactoryImpl.java:660)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.invokeProxyMethod(AbstractEntityManagerFactoryBean.java:529)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean$ManagedEntityManagerFactoryInvocationHandler.invoke(AbstractEntityManagerFactoryBean.java:750)
+	at jdk.proxy2/jdk.proxy2.$Proxy123.getCurrentSession(Unknown Source)
+	at practice.samay.ordermanagementsystem.dao.InventoryDaoImpl.findByProductCode(InventoryDaoImpl.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	... 63 common frames omitted
+2026-06-11 12:08:00.110 [http-nio-8080-exec-6] INFO  p.s.o.controller.OrderController - POST /api/v1/orders – customer: samay@example.com
+2026-06-11 12:08:00.111 [http-nio-8080-exec-6] INFO  p.s.o.service.OrderServiceImpl - Creating order for customer: samay@example.com | product: PROD-001
+2026-06-11 12:08:00.111 [http-nio-8080-exec-6] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Finding inventory by product code: PROD-001
+2026-06-11 12:08:00.111 [http-nio-8080-exec-6] ERROR p.s.o.exception.GlobalExceptionHandler - Unexpected error occurred: No CurrentSessionContext configured
+org.springframework.orm.jpa.JpaSystemException: No CurrentSessionContext configured
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:348)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:560)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:343)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at practice.samay.ordermanagementsystem.dao.InventoryDaoImpl$$SpringCGLIB$$0.findByProductCode(<generated>)
+	at practice.samay.ordermanagementsystem.service.OrderServiceImpl.createOrder(OrderServiceImpl.java:41)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at practice.samay.ordermanagementsystem.service.OrderServiceImpl$$SpringCGLIB$$0.createOrder(<generated>)
+	at practice.samay.ordermanagementsystem.controller.OrderController.createOrder(OrderController.java:43)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.hibernate.HibernateException: No CurrentSessionContext configured
+	at org.hibernate.internal.SessionFactoryImpl.getCurrentSession(SessionFactoryImpl.java:660)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.invokeProxyMethod(AbstractEntityManagerFactoryBean.java:529)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean$ManagedEntityManagerFactoryInvocationHandler.invoke(AbstractEntityManagerFactoryBean.java:750)
+	at jdk.proxy2/jdk.proxy2.$Proxy123.getCurrentSession(Unknown Source)
+	at practice.samay.ordermanagementsystem.dao.InventoryDaoImpl.findByProductCode(InventoryDaoImpl.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	... 63 common frames omitted
+2026-06-11 12:10:05.917 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-11 12:10:05.919 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-11 12:10:05.923 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-11 12:10:05.925 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown initiated...
+2026-06-11 12:10:05.929 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown completed.
+2026-06-11 12:10:28.250 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-06-11 12:10:28.276 [main] INFO  p.s.o.OrderManagementSystemApplication - Starting OrderManagementSystemApplication using Java 21.0.11 with PID 67433 (/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes started by samay.maheshwari in /home/samay.maheshwari/SPRINGBOOT/order-management-system)
+2026-06-11 12:10:28.276 [main] DEBUG p.s.o.OrderManagementSystemApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-11 12:10:28.276 [main] INFO  p.s.o.OrderManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-11 12:10:28.903 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-11 12:10:28.918 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+2026-06-11 12:10:29.170 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-11 12:10:29.176 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-11 12:10:29.177 [main] INFO  o.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-11 12:10:29.177 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-11 12:10:29.198 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-11 12:10:29.198 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 895 ms
+2026-06-11 12:10:29.240 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Starting...
+2026-06-11 12:10:29.355 [main] INFO  com.zaxxer.hikari.pool.HikariPool - OrderManagementPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@4cd7d5e1
+2026-06-11 12:10:29.357 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Start completed.
+2026-06-11 12:10:29.405 [main] INFO  o.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-11 12:10:29.428 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-06-11 12:10:29.446 [main] INFO  o.h.c.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-11 12:10:29.607 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-11 12:10:29.660 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-11 12:10:29.671 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (OrderManagementPool)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-11 12:10:29.674 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@563c3aca) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@53e166ad)
+2026-06-11 12:10:29.674 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@30c03473) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@20fa5277)
+2026-06-11 12:10:29.675 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@17a7d6c8) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@4f2b1e9f)
+2026-06-11 12:10:29.675 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7ef9c8a5) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@c6244e7)
+2026-06-11 12:10:29.675 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@25dad235) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3292eff7)
+2026-06-11 12:10:29.675 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@29ea5e0) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1c459c28)
+2026-06-11 12:10:29.675 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6ffdbeef) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@4a3509b0)
+2026-06-11 12:10:29.675 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3d7314b3) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@d677be9)
+2026-06-11 12:10:29.675 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@fefb66c) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@6d7556a8)
+2026-06-11 12:10:30.106 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-11 12:10:30.129 [main] DEBUG org.hibernate.SQL - 
+    alter table orders 
+       modify column status enum ('CANCELLED','CONFIRMED','DELIVERED','PENDING','PROCESSING','SHIPPED') not null
+2026-06-11 12:10:30.135 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column payment_method enum ('CASH_ON_DELIVERY','CREDIT_CARD','DEBIT_CARD','NET_BANKING','UPI','WALLET') not null
+2026-06-11 12:10:30.139 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column status enum ('COMPLETED','FAILED','PENDING','REFUNDED') not null
+2026-06-11 12:10:30.144 [main] DEBUG org.hibernate.SQL - 
+    alter table shipments 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED') not null
+2026-06-11 12:10:30.147 [main] DEBUG org.hibernate.SQL - 
+    alter table tracking_events 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED')
+2026-06-11 12:10:30.156 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-11 12:10:30.552 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-11 12:10:30.562 [main] INFO  p.s.o.OrderManagementSystemApplication - Started OrderManagementSystemApplication in 2.46 seconds (process running for 3.394)
+2026-06-11 12:10:30.564 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-11 12:10:30.567 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-11 12:10:30.572 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-11 12:10:30.574 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown initiated...
+2026-06-11 12:10:30.584 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown completed.
+2026-06-11 12:10:37.221 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-06-11 12:10:37.236 [main] INFO  p.s.o.OrderManagementSystemApplication - Starting OrderManagementSystemApplication using Java 21.0.11 with PID 67548 (/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes started by samay.maheshwari in /home/samay.maheshwari/SPRINGBOOT/order-management-system)
+2026-06-11 12:10:37.236 [main] DEBUG p.s.o.OrderManagementSystemApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-11 12:10:37.236 [main] INFO  p.s.o.OrderManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-11 12:10:37.567 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-11 12:10:37.578 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 JPA repository interfaces.
+2026-06-11 12:10:37.763 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-11 12:10:37.768 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-11 12:10:37.769 [main] INFO  o.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-11 12:10:37.769 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-11 12:10:37.793 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-11 12:10:37.793 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 542 ms
+2026-06-11 12:10:37.833 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Starting...
+2026-06-11 12:10:37.911 [main] INFO  com.zaxxer.hikari.pool.HikariPool - OrderManagementPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@388be5fd
+2026-06-11 12:10:37.912 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Start completed.
+2026-06-11 12:10:37.942 [main] INFO  o.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-11 12:10:37.960 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-06-11 12:10:37.972 [main] INFO  o.h.c.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-11 12:10:38.093 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-11 12:10:38.121 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-11 12:10:38.128 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (OrderManagementPool)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-11 12:10:38.131 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@506b083) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5eee3da9)
+2026-06-11 12:10:38.131 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@ace2408) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3573e19d)
+2026-06-11 12:10:38.131 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5c1dd18) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@2a6dbb7c)
+2026-06-11 12:10:38.131 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5178345d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7b2d58e6)
+2026-06-11 12:10:38.131 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@708f7386) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@377e90b0)
+2026-06-11 12:10:38.131 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@27b490de) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@36cf16a6)
+2026-06-11 12:10:38.131 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3dd750ba) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7eefaca0)
+2026-06-11 12:10:38.131 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7d5ef1c3) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@33eab2e8)
+2026-06-11 12:10:38.131 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@34bf66af) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@37364634)
+2026-06-11 12:10:38.507 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-11 12:10:38.528 [main] DEBUG org.hibernate.SQL - 
+    alter table orders 
+       modify column status enum ('CANCELLED','CONFIRMED','DELIVERED','PENDING','PROCESSING','SHIPPED') not null
+2026-06-11 12:10:38.536 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column payment_method enum ('CASH_ON_DELIVERY','CREDIT_CARD','DEBIT_CARD','NET_BANKING','UPI','WALLET') not null
+2026-06-11 12:10:38.541 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column status enum ('COMPLETED','FAILED','PENDING','REFUNDED') not null
+2026-06-11 12:10:38.545 [main] DEBUG org.hibernate.SQL - 
+    alter table shipments 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED') not null
+2026-06-11 12:10:38.549 [main] DEBUG org.hibernate.SQL - 
+    alter table tracking_events 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED')
+2026-06-11 12:10:38.559 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-11 12:10:38.872 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-11 12:10:38.881 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-11 12:10:38.885 [main] INFO  p.s.o.OrderManagementSystemApplication - Started OrderManagementSystemApplication in 1.875 seconds (process running for 2.359)
+2026-06-11 12:12:40.024 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-11 12:12:40.024 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-11 12:12:40.025 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-06-11 12:12:40.503 [http-nio-8080-exec-4] INFO  o.springdoc.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 296 ms
+2026-06-11 12:13:19.313 [http-nio-8080-exec-5] INFO  p.s.o.controller.OrderController - POST /api/v1/orders – customer: samwreqay@example.com
+2026-06-11 12:13:19.332 [http-nio-8080-exec-5] INFO  p.s.o.service.OrderServiceImpl - Creating order for customer: samwreqay@example.com | product: PROD-005
+2026-06-11 12:13:19.333 [http-nio-8080-exec-5] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Finding inventory by product code: PROD-005
+2026-06-11 12:13:19.335 [http-nio-8080-exec-5] ERROR p.s.o.exception.GlobalExceptionHandler - Unexpected error occurred: No CurrentSessionContext configured
+org.springframework.orm.jpa.JpaSystemException: No CurrentSessionContext configured
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:348)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:560)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:343)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:160)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at practice.samay.ordermanagementsystem.dao.InventoryDaoImpl$$SpringCGLIB$$0.findByProductCode(<generated>)
+	at practice.samay.ordermanagementsystem.service.OrderServiceImpl.createOrder(OrderServiceImpl.java:41)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at practice.samay.ordermanagementsystem.service.OrderServiceImpl$$SpringCGLIB$$0.createOrder(<generated>)
+	at practice.samay.ordermanagementsystem.controller.OrderController.createOrder(OrderController.java:43)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.hibernate.HibernateException: No CurrentSessionContext configured
+	at org.hibernate.internal.SessionFactoryImpl.getCurrentSession(SessionFactoryImpl.java:660)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.invokeProxyMethod(AbstractEntityManagerFactoryBean.java:529)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean$ManagedEntityManagerFactoryInvocationHandler.invoke(AbstractEntityManagerFactoryBean.java:750)
+	at jdk.proxy2/jdk.proxy2.$Proxy124.getCurrentSession(Unknown Source)
+	at practice.samay.ordermanagementsystem.dao.InventoryDaoImpl.findByProductCode(InventoryDaoImpl.java:49)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
 	... 66 common frames omitted
-Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+2026-06-11 12:15:43.264 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-11 12:15:43.266 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-11 12:15:43.270 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-11 12:15:43.272 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown initiated...
+2026-06-11 12:15:43.277 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown completed.
+2026-06-11 12:30:54.711 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-06-11 12:30:54.729 [main] INFO  p.s.o.OrderManagementSystemApplication - Starting OrderManagementSystemApplication using Java 21.0.8 with PID 70670 (/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes started by samay.maheshwari in /home/samay.maheshwari/SPRINGBOOT/order-management-system)
+2026-06-11 12:30:54.730 [main] DEBUG p.s.o.OrderManagementSystemApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-11 12:30:54.730 [main] INFO  p.s.o.OrderManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-11 12:30:55.116 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-11 12:30:55.129 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+2026-06-11 12:30:55.349 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-11 12:30:55.356 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-11 12:30:55.357 [main] INFO  o.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-11 12:30:55.358 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-11 12:30:55.383 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-11 12:30:55.383 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 637 ms
+2026-06-11 12:30:55.433 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Starting...
+2026-06-11 12:30:55.537 [main] INFO  com.zaxxer.hikari.pool.HikariPool - OrderManagementPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@234cd86c
+2026-06-11 12:30:55.538 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Start completed.
+2026-06-11 12:30:55.546 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'orderController' defined in file [/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes/practice/samay/ordermanagementsystem/controller/OrderController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'orderServiceImpl' defined in file [/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes/practice/samay/ordermanagementsystem/service/OrderServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'orderDaoImpl' defined in file [/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes/practice/samay/ordermanagementsystem/dao/OrderDaoImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sessionFactory' defined in class path resource [practice/samay/ordermanagementsystem/config/HibernateConfig.class]: Unsatisfied dependency expressed through method 'sessionFactory' parameter 0: Error creating bean with name 'sessionFactory': Requested bean is currently in creation: Is there an unresolvable circular reference or an asynchronous initialization dependency?
+2026-06-11 12:30:55.547 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown initiated...
+2026-06-11 12:30:55.551 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown completed.
+2026-06-11 12:30:55.552 [main] INFO  o.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2026-06-11 12:30:55.560 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
 
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:55)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:840)
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:416)
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144)
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370)
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207)
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488)
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576)
-	... 77 common frames omitted
-Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-06-11 12:30:55.567 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
 
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140)
-	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:156)
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:79)
-	at com.mysql.cj.NativeSession.connect(NativeSession.java:142)
-	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:964)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
-	... 85 common frames omitted
-Caused by: java.net.ConnectException: Connection refused: getsockopt
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:751)
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
-	... 88 common frames omitted
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+   orderController defined in file [/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes/practice/samay/ordermanagementsystem/controller/OrderController.class]
+      ↓
+   orderServiceImpl defined in file [/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes/practice/samay/ordermanagementsystem/service/OrderServiceImpl.class]
+      ↓
+   orderDaoImpl defined in file [/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes/practice/samay/ordermanagementsystem/dao/OrderDaoImpl.class]
+┌─────┐
+|  sessionFactory defined in class path resource [practice/samay/ordermanagementsystem/config/HibernateConfig.class]
+└─────┘
+
+
+Action:
+
+Relying upon circular references is discouraged and they are prohibited by default. Update your application to remove the dependency cycle between beans. As a last resort, it may be possible to break the cycle automatically by setting spring.main.allow-circular-references to true.
+
+2026-06-11 12:33:40.850 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-06-11 12:33:40.870 [main] INFO  p.s.o.OrderManagementSystemApplication - Starting OrderManagementSystemApplication using Java 21.0.8 with PID 71261 (/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes started by samay.maheshwari in /home/samay.maheshwari/SPRINGBOOT/order-management-system)
+2026-06-11 12:33:40.870 [main] DEBUG p.s.o.OrderManagementSystemApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-11 12:33:40.871 [main] INFO  p.s.o.OrderManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-11 12:33:41.382 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-11 12:33:41.387 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-11 12:33:41.389 [main] INFO  o.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-11 12:33:41.389 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-11 12:33:41.410 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-11 12:33:41.410 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 523 ms
+2026-06-11 12:33:41.451 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Starting...
+2026-06-11 12:33:41.546 [main] INFO  com.zaxxer.hikari.pool.HikariPool - OrderManagementPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@16cf8438
+2026-06-11 12:33:41.547 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Start completed.
+2026-06-11 12:33:41.571 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-06-11 12:33:41.599 [main] INFO  o.h.c.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-11 12:33:41.671 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-11 12:33:41.686 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (OrderManagementPool)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-11 12:33:41.691 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3321291a) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3dc46f24)
+2026-06-11 12:33:41.691 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@76af34b5) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3313463c)
+2026-06-11 12:33:41.692 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@9c0d0bd) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@176333ee)
+2026-06-11 12:33:41.692 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@18e6b72b) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@316d30ad)
+2026-06-11 12:33:41.692 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3ea75b05) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@30d5e37c)
+2026-06-11 12:33:41.692 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1da745a2) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@4597e6e3)
+2026-06-11 12:33:41.692 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@41ece227) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5e3d2765)
+2026-06-11 12:33:41.692 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7910f355) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@34ab26a)
+2026-06-11 12:33:41.692 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@259195fe) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@12209826)
+2026-06-11 12:33:42.140 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-11 12:33:42.163 [main] DEBUG org.hibernate.SQL - 
+    alter table orders 
+       modify column status enum ('CANCELLED','CONFIRMED','DELIVERED','PENDING','PROCESSING','SHIPPED') not null
+2026-06-11 12:33:42.169 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column payment_method enum ('CASH_ON_DELIVERY','CREDIT_CARD','DEBIT_CARD','NET_BANKING','UPI','WALLET') not null
+2026-06-11 12:33:42.176 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column status enum ('COMPLETED','FAILED','PENDING','REFUNDED') not null
+2026-06-11 12:33:42.182 [main] DEBUG org.hibernate.SQL - 
+    alter table shipments 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED') not null
+2026-06-11 12:33:42.188 [main] DEBUG org.hibernate.SQL - 
+    alter table tracking_events 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED')
+2026-06-11 12:33:42.521 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-11 12:33:42.529 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-11 12:33:42.534 [main] INFO  p.s.o.OrderManagementSystemApplication - Started OrderManagementSystemApplication in 1.842 seconds (process running for 2.068)
+2026-06-11 12:34:11.145 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-11 12:34:11.145 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-11 12:34:11.146 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-06-11 12:34:11.888 [http-nio-8080-exec-10] INFO  o.springdoc.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 342 ms
+2026-06-11 12:35:29.231 [http-nio-8080-exec-5] INFO  p.s.o.controller.OrderController - POST /api/v1/orders – customer: samwreqay@example.com
+2026-06-11 12:35:29.295 [http-nio-8080-exec-5] INFO  p.s.o.service.OrderServiceImpl - Creating order for customer: samwreqay@example.com | product: PROD-005
+2026-06-11 12:35:29.296 [http-nio-8080-exec-5] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Finding inventory by product code: PROD-005
+2026-06-11 12:35:29.771 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        i1_0.id,
+        i1_0.available_quantity,
+        i1_0.created_at,
+        i1_0.product_code,
+        i1_0.product_name,
+        i1_0.reorder_level,
+        i1_0.reserved_quantity,
+        i1_0.unit_price,
+        i1_0.updated_at 
+    from
+        inventory i1_0 
+    where
+        i1_0.product_code=?
+2026-06-11 12:35:29.825 [http-nio-8080-exec-5] ERROR p.s.o.exception.GlobalExceptionHandler - Resource not found: Product not found in inventory: PROD-005
+2026-06-11 12:38:54.943 [http-nio-8080-exec-9] INFO  p.s.o.controller.OrderController - POST /api/v1/orders – customer: samwreqay@example.com
+2026-06-11 12:38:54.946 [http-nio-8080-exec-9] INFO  p.s.o.service.OrderServiceImpl - Creating order for customer: samwreqay@example.com | product: PROD-005
+2026-06-11 12:38:54.947 [http-nio-8080-exec-9] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Finding inventory by product code: PROD-005
+2026-06-11 12:38:54.949 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        i1_0.id,
+        i1_0.available_quantity,
+        i1_0.created_at,
+        i1_0.product_code,
+        i1_0.product_name,
+        i1_0.reorder_level,
+        i1_0.reserved_quantity,
+        i1_0.unit_price,
+        i1_0.updated_at 
+    from
+        inventory i1_0 
+    where
+        i1_0.product_code=?
+2026-06-11 12:38:54.974 [http-nio-8080-exec-9] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Persisting new order with number: ORD-1781161734973-6057
+2026-06-11 12:38:55.014 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        orders
+        (created_at, customer_email, customer_name, customer_phone, notes, order_number, product_code, product_name, quantity, shipping_address, status, total_amount, unit_price, updated_at) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-06-11 12:38:55.046 [http-nio-8080-exec-9] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Merging inventory for product: PROD-005
+2026-06-11 12:38:55.049 [http-nio-8080-exec-9] INFO  p.s.o.service.OrderServiceImpl - Order created successfully: ORD-1781161734973-6057 | Total: ₹5999.98
+2026-06-11 12:38:55.078 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    update
+        inventory 
+    set
+        available_quantity=?,
+        product_code=?,
+        product_name=?,
+        reorder_level=?,
+        reserved_quantity=?,
+        unit_price=?,
+        updated_at=? 
+    where
+        id=?
+2026-06-11 13:08:06.665 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-11 13:08:06.671 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-11 13:08:06.688 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown initiated...
+2026-06-11 13:08:06.695 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown completed.
+2026-06-11 13:16:02.914 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-06-11 13:16:02.947 [main] INFO  p.s.o.OrderManagementSystemApplication - Starting OrderManagementSystemApplication using Java 21.0.8 with PID 73659 (/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes started by samay.maheshwari in /home/samay.maheshwari/SPRINGBOOT/order-management-system)
+2026-06-11 13:16:02.948 [main] DEBUG p.s.o.OrderManagementSystemApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-11 13:16:02.948 [main] INFO  p.s.o.OrderManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-11 13:16:04.027 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-11 13:16:04.035 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-11 13:16:04.036 [main] INFO  o.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-11 13:16:04.036 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-11 13:16:04.067 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-11 13:16:04.067 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1088 ms
+2026-06-11 13:16:04.197 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Starting...
+2026-06-11 13:16:04.412 [main] INFO  com.zaxxer.hikari.pool.HikariPool - OrderManagementPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@666618d6
+2026-06-11 13:16:04.416 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Start completed.
+2026-06-11 13:16:04.484 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-06-11 13:16:04.525 [main] INFO  o.h.c.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-11 13:16:04.673 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-11 13:16:04.688 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (OrderManagementPool)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-11 13:16:04.695 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6736f40f) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@12f9f896)
+2026-06-11 13:16:04.696 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7548e1fb) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@505f45cc)
+2026-06-11 13:16:04.696 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@994544) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5df92089)
+2026-06-11 13:16:04.696 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@6f0c45f4) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@45571cfc)
+2026-06-11 13:16:04.696 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@faec277) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1b475663)
+2026-06-11 13:16:04.696 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1669931a) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@6b24ddd7)
+2026-06-11 13:16:04.696 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@12e007be) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3335afcf)
+2026-06-11 13:16:04.696 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@699e0bf0) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@2499b971)
+2026-06-11 13:16:04.696 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@36d697ab) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@28831d69)
+2026-06-11 13:16:05.531 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-11 13:16:05.584 [main] DEBUG org.hibernate.SQL - 
+    alter table orders 
+       modify column status enum ('CANCELLED','CONFIRMED','DELIVERED','PENDING','PROCESSING','SHIPPED') not null
+2026-06-11 13:16:05.595 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column payment_method enum ('CASH_ON_DELIVERY','CREDIT_CARD','DEBIT_CARD','NET_BANKING','UPI','WALLET') not null
+2026-06-11 13:16:05.607 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column status enum ('COMPLETED','FAILED','PENDING','REFUNDED') not null
+2026-06-11 13:16:05.617 [main] DEBUG org.hibernate.SQL - 
+    alter table shipments 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED') not null
+2026-06-11 13:16:05.625 [main] DEBUG org.hibernate.SQL - 
+    alter table tracking_events 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED')
+2026-06-11 13:16:06.282 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-11 13:16:06.288 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-11 13:16:06.305 [main] INFO  p.s.o.OrderManagementSystemApplication - Started OrderManagementSystemApplication in 3.614 seconds (process running for 3.915)
+2026-06-11 13:16:06.354 [main] INFO  p.s.o.config.DataSeeder - Checking if inventory needs seeding...
+2026-06-11 13:16:06.354 [main] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Fetching all inventory records
+2026-06-11 13:16:06.557 [main] DEBUG org.hibernate.SQL - 
+    select
+        i1_0.id,
+        i1_0.available_quantity,
+        i1_0.created_at,
+        i1_0.product_code,
+        i1_0.product_name,
+        i1_0.reorder_level,
+        i1_0.reserved_quantity,
+        i1_0.unit_price,
+        i1_0.updated_at 
+    from
+        inventory i1_0 
+    order by
+        i1_0.product_code
+2026-06-11 13:16:06.594 [main] INFO  p.s.o.config.DataSeeder - Inventory already contains 1 items. Skipping seeding.
+2026-06-11 13:53:47.833 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-11 13:53:47.833 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-11 13:53:47.835 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-06-11 13:53:48.002 [http-nio-8080-exec-1] INFO  p.s.o.controller.PaymentController - POST /api/v1/payments – order id: 1 | method: UPI
+2026-06-11 13:53:48.004 [http-nio-8080-exec-1] INFO  p.s.o.service.PaymentServiceImpl - Processing payment request for order id: 1 | method: UPI
+2026-06-11 13:53:48.004 [http-nio-8080-exec-1] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Finding order by id: 1
+2026-06-11 13:53:48.009 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        o1_0.id,
+        o1_0.created_at,
+        o1_0.customer_email,
+        o1_0.customer_name,
+        o1_0.customer_phone,
+        o1_0.notes,
+        o1_0.order_number,
+        o1_0.product_code,
+        o1_0.product_name,
+        o1_0.quantity,
+        o1_0.shipping_address,
+        o1_0.status,
+        o1_0.total_amount,
+        o1_0.unit_price,
+        o1_0.updated_at 
+    from
+        orders o1_0 
+    where
+        o1_0.id=?
+2026-06-11 13:53:48.016 [http-nio-8080-exec-1] DEBUG p.s.o.dao.PaymentDaoImpl - DAO: Persisting new payment with reference: PAY-1781166228015-1675
+2026-06-11 13:53:48.033 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        payments
+        (amount, created_at, order_id, paid_at, payment_method, payment_reference, remarks, status, transaction_id, updated_at) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-06-11 13:53:48.053 [http-nio-8080-exec-1] INFO  p.s.o.service.PaymentServiceImpl - [PAYMENT GATEWAY] Proceeding to payment for Order: ORD-1781161734973-6057 (Total: ₹5999.98)
+2026-06-11 13:53:48.054 [http-nio-8080-exec-1] INFO  p.s.o.service.PaymentServiceImpl - [PAYMENT GATEWAY] UPI ID submitted: samay@upi
+2026-06-11 13:53:48.054 [http-nio-8080-exec-1] INFO  p.s.o.service.PaymentServiceImpl - [PAYMENT GATEWAY] Sending collect request to UPI App. Please open your UPI app and authorize...
+2026-06-11 13:53:48.054 [http-nio-8080-exec-1] INFO  p.s.o.service.PaymentServiceImpl - [PAYMENT GATEWAY] [Waiting for user response - 3 seconds]...
+2026-06-11 13:53:51.054 [http-nio-8080-exec-1] INFO  p.s.o.service.PaymentServiceImpl - [PAYMENT GATEWAY] Authorization Success! PIN verified.
+2026-06-11 13:53:51.054 [http-nio-8080-exec-1] DEBUG p.s.o.dao.PaymentDaoImpl - DAO: Merging payment with id: 1
+2026-06-11 13:53:51.056 [http-nio-8080-exec-1] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Merging order with id: 1
+2026-06-11 13:53:51.056 [http-nio-8080-exec-1] INFO  p.s.o.service.PaymentServiceImpl - [PAYMENT GATEWAY] Payment PAY-1781166228015-1675 completed successfully. Order ORD-1781161734973-6057 status is now CONFIRMED.
+2026-06-11 13:53:51.070 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    update
+        orders 
+    set
+        customer_email=?,
+        customer_name=?,
+        customer_phone=?,
+        notes=?,
+        order_number=?,
+        product_code=?,
+        product_name=?,
+        quantity=?,
+        shipping_address=?,
+        status=?,
+        total_amount=?,
+        unit_price=?,
+        updated_at=? 
+    where
+        id=?
+2026-06-11 13:53:51.075 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    update
+        payments 
+    set
+        amount=?,
+        order_id=?,
+        paid_at=?,
+        payment_method=?,
+        payment_reference=?,
+        remarks=?,
+        status=?,
+        transaction_id=?,
+        updated_at=? 
+    where
+        id=?
+2026-06-11 13:54:06.203 [http-nio-8080-exec-2] INFO  p.s.o.controller.ShipmentController - POST /api/v1/shipments – order id: 1 | carrier: BlueDart
+2026-06-11 13:54:06.204 [http-nio-8080-exec-2] INFO  p.s.o.service.ShipmentServiceImpl - Creating shipment for order id: 1
+2026-06-11 13:54:06.205 [http-nio-8080-exec-2] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Finding order by id: 1
+2026-06-11 13:54:06.205 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        o1_0.id,
+        o1_0.created_at,
+        o1_0.customer_email,
+        o1_0.customer_name,
+        o1_0.customer_phone,
+        o1_0.notes,
+        o1_0.order_number,
+        o1_0.product_code,
+        o1_0.product_name,
+        o1_0.quantity,
+        o1_0.shipping_address,
+        o1_0.status,
+        o1_0.total_amount,
+        o1_0.unit_price,
+        o1_0.updated_at 
+    from
+        orders o1_0 
+    where
+        o1_0.id=?
+2026-06-11 13:54:06.211 [http-nio-8080-exec-2] DEBUG p.s.o.dao.ShipmentDaoImpl - DAO: Persisting new shipment with tracking: TRK-1781166246210-3500
+2026-06-11 13:54:06.213 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        shipments
+        (carrier, created_at, delivered_at, estimated_delivery, order_id, shipped_at, shipping_address, status, tracking_number, updated_at, weight) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-06-11 13:54:06.221 [http-nio-8080-exec-2] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Merging order with id: 1
+2026-06-11 13:54:06.222 [http-nio-8080-exec-2] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Finding inventory by product code: PROD-005
+2026-06-11 13:54:06.250 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        i1_0.id,
+        i1_0.available_quantity,
+        i1_0.created_at,
+        i1_0.product_code,
+        i1_0.product_name,
+        i1_0.reorder_level,
+        i1_0.reserved_quantity,
+        i1_0.unit_price,
+        i1_0.updated_at 
+    from
+        inventory i1_0 
+    where
+        i1_0.product_code=?
+2026-06-11 13:54:06.252 [http-nio-8080-exec-2] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Merging inventory for product: PROD-005
+2026-06-11 13:54:06.253 [http-nio-8080-exec-2] INFO  p.s.o.service.ShipmentServiceImpl - Shipment created: TRK-1781166246210-3500 | Carrier: BlueDart
+2026-06-11 13:54:06.255 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    update
+        inventory 
+    set
+        available_quantity=?,
+        product_code=?,
+        product_name=?,
+        reorder_level=?,
+        reserved_quantity=?,
+        unit_price=?,
+        updated_at=? 
+    where
+        id=?
+2026-06-11 13:54:06.259 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    update
+        orders 
+    set
+        customer_email=?,
+        customer_name=?,
+        customer_phone=?,
+        notes=?,
+        order_number=?,
+        product_code=?,
+        product_name=?,
+        quantity=?,
+        shipping_address=?,
+        status=?,
+        total_amount=?,
+        unit_price=?,
+        updated_at=? 
+    where
+        id=?
+2026-06-11 13:54:14.477 [http-nio-8080-exec-3] INFO  p.s.o.controller.TrackingController - POST /api/v1/tracking – shipment id: 1 | location: Mumbai Sorting Facility
+2026-06-11 13:54:14.479 [http-nio-8080-exec-3] INFO  p.s.o.service.TrackingServiceImpl - Adding tracking event for shipment id: 1 | status: IN_TRANSIT
+2026-06-11 13:54:14.480 [http-nio-8080-exec-3] DEBUG p.s.o.dao.ShipmentDaoImpl - DAO: Finding shipment by id: 1
+2026-06-11 13:54:14.480 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.id,
+        s1_0.carrier,
+        s1_0.created_at,
+        s1_0.delivered_at,
+        s1_0.estimated_delivery,
+        s1_0.order_id,
+        s1_0.shipped_at,
+        s1_0.shipping_address,
+        s1_0.status,
+        s1_0.tracking_number,
+        s1_0.updated_at,
+        s1_0.weight 
+    from
+        shipments s1_0 
+    where
+        s1_0.id=?
+2026-06-11 13:54:14.486 [http-nio-8080-exec-3] DEBUG p.s.o.dao.TrackingDaoImpl - DAO: Persisting tracking event for shipment id: 1
+2026-06-11 13:54:14.487 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        tracking_events
+        (created_at, description, event_timestamp, location, shipment_id, status) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-06-11 13:54:14.492 [http-nio-8080-exec-3] DEBUG p.s.o.dao.ShipmentDaoImpl - DAO: Merging shipment with id: 1
+2026-06-11 13:54:14.492 [http-nio-8080-exec-3] INFO  p.s.o.service.TrackingServiceImpl - Tracking event added for shipment TRK-1781166246210-3500 at location: Mumbai Sorting Facility
+2026-06-11 13:54:14.495 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    update
+        shipments 
+    set
+        carrier=?,
+        delivered_at=?,
+        estimated_delivery=?,
+        order_id=?,
+        shipped_at=?,
+        shipping_address=?,
+        status=?,
+        tracking_number=?,
+        updated_at=?,
+        weight=? 
+    where
+        id=?
+2026-06-11 13:54:27.218 [http-nio-8080-exec-4] DEBUG p.s.o.controller.OrderController - GET /api/v1/orders/1
+2026-06-11 13:54:27.225 [http-nio-8080-exec-4] DEBUG p.s.o.service.OrderServiceImpl - Fetching order by id: 1
+2026-06-11 13:54:27.225 [http-nio-8080-exec-4] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Finding order by id: 1
+2026-06-11 13:54:27.226 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        o1_0.id,
+        o1_0.created_at,
+        o1_0.customer_email,
+        o1_0.customer_name,
+        o1_0.customer_phone,
+        o1_0.notes,
+        o1_0.order_number,
+        o1_0.product_code,
+        o1_0.product_name,
+        o1_0.quantity,
+        o1_0.shipping_address,
+        o1_0.status,
+        o1_0.total_amount,
+        o1_0.unit_price,
+        o1_0.updated_at 
+    from
+        orders o1_0 
+    where
+        o1_0.id=?
+2026-06-11 13:54:27.253 [http-nio-8080-exec-6] DEBUG p.s.o.controller.PaymentController - GET /api/v1/payments/1
+2026-06-11 13:54:27.255 [http-nio-8080-exec-6] DEBUG p.s.o.service.PaymentServiceImpl - Fetching payment by id: 1
+2026-06-11 13:54:27.256 [http-nio-8080-exec-6] DEBUG p.s.o.dao.PaymentDaoImpl - DAO: Finding payment by id: 1
+2026-06-11 13:54:27.256 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.amount,
+        p1_0.created_at,
+        p1_0.order_id,
+        p1_0.paid_at,
+        p1_0.payment_method,
+        p1_0.payment_reference,
+        p1_0.remarks,
+        p1_0.status,
+        p1_0.transaction_id,
+        p1_0.updated_at 
+    from
+        payments p1_0 
+    where
+        p1_0.id=?
+2026-06-11 13:54:27.261 [http-nio-8080-exec-6] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Finding order by id: 1
+2026-06-11 13:54:27.262 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        o1_0.id,
+        o1_0.created_at,
+        o1_0.customer_email,
+        o1_0.customer_name,
+        o1_0.customer_phone,
+        o1_0.notes,
+        o1_0.order_number,
+        o1_0.product_code,
+        o1_0.product_name,
+        o1_0.quantity,
+        o1_0.shipping_address,
+        o1_0.status,
+        o1_0.total_amount,
+        o1_0.unit_price,
+        o1_0.updated_at 
+    from
+        orders o1_0 
+    where
+        o1_0.id=?
+2026-06-11 13:54:27.283 [http-nio-8080-exec-7] DEBUG p.s.o.controller.ShipmentController - GET /api/v1/shipments/1
+2026-06-11 13:54:27.285 [http-nio-8080-exec-7] DEBUG p.s.o.service.ShipmentServiceImpl - Fetching shipment by id: 1
+2026-06-11 13:54:27.285 [http-nio-8080-exec-7] DEBUG p.s.o.dao.ShipmentDaoImpl - DAO: Finding shipment by id: 1
+2026-06-11 13:54:27.286 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.id,
+        s1_0.carrier,
+        s1_0.created_at,
+        s1_0.delivered_at,
+        s1_0.estimated_delivery,
+        s1_0.order_id,
+        s1_0.shipped_at,
+        s1_0.shipping_address,
+        s1_0.status,
+        s1_0.tracking_number,
+        s1_0.updated_at,
+        s1_0.weight 
+    from
+        shipments s1_0 
+    where
+        s1_0.id=?
+2026-06-11 13:54:27.289 [http-nio-8080-exec-7] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Finding order by id: 1
+2026-06-11 13:54:27.289 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        o1_0.id,
+        o1_0.created_at,
+        o1_0.customer_email,
+        o1_0.customer_name,
+        o1_0.customer_phone,
+        o1_0.notes,
+        o1_0.order_number,
+        o1_0.product_code,
+        o1_0.product_name,
+        o1_0.quantity,
+        o1_0.shipping_address,
+        o1_0.status,
+        o1_0.total_amount,
+        o1_0.unit_price,
+        o1_0.updated_at 
+    from
+        orders o1_0 
+    where
+        o1_0.id=?
+2026-06-11 13:54:27.307 [http-nio-8080-exec-9] DEBUG p.s.o.controller.TrackingController - GET /api/v1/tracking/1
+2026-06-11 13:54:27.308 [http-nio-8080-exec-9] DEBUG p.s.o.service.TrackingServiceImpl - Fetching tracking event by id: 1
+2026-06-11 13:54:27.308 [http-nio-8080-exec-9] DEBUG p.s.o.dao.TrackingDaoImpl - DAO: Finding tracking event by id: 1
+2026-06-11 13:54:27.309 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        t1_0.id,
+        t1_0.created_at,
+        t1_0.description,
+        t1_0.event_timestamp,
+        t1_0.location,
+        t1_0.shipment_id,
+        t1_0.status 
+    from
+        tracking_events t1_0 
+    where
+        t1_0.id=?
+2026-06-11 13:54:27.311 [http-nio-8080-exec-9] DEBUG p.s.o.dao.ShipmentDaoImpl - DAO: Finding shipment by id: 1
+2026-06-11 13:54:27.312 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        s1_0.id,
+        s1_0.carrier,
+        s1_0.created_at,
+        s1_0.delivered_at,
+        s1_0.estimated_delivery,
+        s1_0.order_id,
+        s1_0.shipped_at,
+        s1_0.shipping_address,
+        s1_0.status,
+        s1_0.tracking_number,
+        s1_0.updated_at,
+        s1_0.weight 
+    from
+        shipments s1_0 
+    where
+        s1_0.id=?
+2026-06-11 13:54:37.478 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-11 13:54:37.481 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-11 13:54:37.487 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown initiated...
+2026-06-11 13:54:37.491 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown completed.
+2026-06-11 14:06:53.380 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-06-11 14:06:53.399 [main] INFO  p.s.o.OrderManagementSystemApplication - Starting OrderManagementSystemApplication using Java 21.0.11 with PID 76831 (/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes started by samay.maheshwari in /home/samay.maheshwari/SPRINGBOOT/order-management-system)
+2026-06-11 14:06:53.399 [main] DEBUG p.s.o.OrderManagementSystemApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-11 14:06:53.400 [main] INFO  p.s.o.OrderManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-11 14:06:54.140 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-11 14:06:54.145 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-11 14:06:54.146 [main] INFO  o.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-11 14:06:54.146 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-11 14:06:54.175 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-11 14:06:54.175 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 741 ms
+2026-06-11 14:06:54.212 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Starting...
+2026-06-11 14:06:54.311 [main] INFO  com.zaxxer.hikari.pool.HikariPool - OrderManagementPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@57ce2898
+2026-06-11 14:06:54.312 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Start completed.
+2026-06-11 14:06:54.338 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-06-11 14:06:54.362 [main] INFO  o.h.c.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-11 14:06:54.442 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-11 14:06:54.451 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (OrderManagementPool)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-11 14:06:54.455 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@110620d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@4f402027)
+2026-06-11 14:06:54.456 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@22aee519) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7c226095)
+2026-06-11 14:06:54.456 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7ea07516) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@30af23fd)
+2026-06-11 14:06:54.456 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@65fc8edc) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@a357c3e)
+2026-06-11 14:06:54.456 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7740b0ab) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3eb9c575)
+2026-06-11 14:06:54.456 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3f322610) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1e477944)
+2026-06-11 14:06:54.456 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6cf047cf) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1c92a549)
+2026-06-11 14:06:54.456 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@323e026d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1716c037)
+2026-06-11 14:06:54.456 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@79b63325) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@708769b7)
+2026-06-11 14:06:54.987 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-11 14:06:55.039 [main] DEBUG org.hibernate.SQL - 
+    alter table orders 
+       modify column status enum ('CANCELLED','CONFIRMED','DELIVERED','PENDING','PROCESSING','SHIPPED') not null
+2026-06-11 14:06:55.049 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column payment_method enum ('CASH_ON_DELIVERY','CREDIT_CARD','DEBIT_CARD','NET_BANKING','UPI','WALLET') not null
+2026-06-11 14:06:55.054 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column status enum ('COMPLETED','FAILED','PENDING','REFUNDED') not null
+2026-06-11 14:06:55.058 [main] DEBUG org.hibernate.SQL - 
+    alter table shipments 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED') not null
+2026-06-11 14:06:55.066 [main] DEBUG org.hibernate.SQL - 
+    alter table tracking_events 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED')
+2026-06-11 14:06:55.433 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-11 14:06:55.439 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-11 14:06:55.443 [main] INFO  p.s.o.OrderManagementSystemApplication - Started OrderManagementSystemApplication in 2.258 seconds (process running for 2.766)
+2026-06-11 14:06:55.466 [main] INFO  p.s.o.config.DataSeeder - Checking if inventory needs seeding...
+2026-06-11 14:06:55.467 [main] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Fetching all inventory records
+2026-06-11 14:06:55.600 [main] DEBUG org.hibernate.SQL - 
+    select
+        i1_0.id,
+        i1_0.available_quantity,
+        i1_0.created_at,
+        i1_0.product_code,
+        i1_0.product_name,
+        i1_0.reorder_level,
+        i1_0.reserved_quantity,
+        i1_0.unit_price,
+        i1_0.updated_at 
+    from
+        inventory i1_0 
+    order by
+        i1_0.product_code
+2026-06-11 14:06:55.616 [main] INFO  p.s.o.config.DataSeeder - Inventory already contains 1 items. Skipping seeding.
+2026-06-11 14:07:46.963 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-11 14:07:46.963 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-06-11 14:07:46.964 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-06-11 14:07:47.495 [http-nio-8080-exec-4] INFO  o.springdoc.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 335 ms
+2026-06-11 14:08:09.214 [http-nio-8080-exec-5] INFO  p.s.o.controller.OrderController - POST /api/v1/orders – customer: samay@example.com
+2026-06-11 14:08:09.215 [http-nio-8080-exec-5] INFO  p.s.o.service.OrderServiceImpl - Creating order for customer: samay@example.com | product: PROD-001
+2026-06-11 14:08:09.215 [http-nio-8080-exec-5] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Finding inventory by product code: PROD-001
+2026-06-11 14:08:09.224 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        i1_0.id,
+        i1_0.available_quantity,
+        i1_0.created_at,
+        i1_0.product_code,
+        i1_0.product_name,
+        i1_0.reorder_level,
+        i1_0.reserved_quantity,
+        i1_0.unit_price,
+        i1_0.updated_at 
+    from
+        inventory i1_0 
+    where
+        i1_0.product_code=?
+2026-06-11 14:08:09.228 [http-nio-8080-exec-5] ERROR p.s.o.exception.GlobalExceptionHandler - Resource not found: Product not found in inventory: PROD-001
+2026-06-11 14:08:13.322 [http-nio-8080-exec-6] INFO  p.s.o.controller.OrderController - POST /api/v1/orders – customer: samay@example.com
+2026-06-11 14:08:13.325 [http-nio-8080-exec-6] INFO  p.s.o.service.OrderServiceImpl - Creating order for customer: samay@example.com | product: PROD-001
+2026-06-11 14:08:13.325 [http-nio-8080-exec-6] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Finding inventory by product code: PROD-001
+2026-06-11 14:08:13.326 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        i1_0.id,
+        i1_0.available_quantity,
+        i1_0.created_at,
+        i1_0.product_code,
+        i1_0.product_name,
+        i1_0.reorder_level,
+        i1_0.reserved_quantity,
+        i1_0.unit_price,
+        i1_0.updated_at 
+    from
+        inventory i1_0 
+    where
+        i1_0.product_code=?
+2026-06-11 14:08:13.328 [http-nio-8080-exec-6] ERROR p.s.o.exception.GlobalExceptionHandler - Resource not found: Product not found in inventory: PROD-001
+2026-06-11 14:09:19.295 [http-nio-8080-exec-8] DEBUG p.s.o.controller.OrderController - GET /api/v1/orders
+2026-06-11 14:09:19.297 [http-nio-8080-exec-8] DEBUG p.s.o.service.OrderServiceImpl - Fetching all orders
+2026-06-11 14:09:19.298 [http-nio-8080-exec-8] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Fetching all orders
+2026-06-11 14:09:19.299 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        o1_0.id,
+        o1_0.created_at,
+        o1_0.customer_email,
+        o1_0.customer_name,
+        o1_0.customer_phone,
+        o1_0.notes,
+        o1_0.order_number,
+        o1_0.product_code,
+        o1_0.product_name,
+        o1_0.quantity,
+        o1_0.shipping_address,
+        o1_0.status,
+        o1_0.total_amount,
+        o1_0.unit_price,
+        o1_0.updated_at 
+    from
+        orders o1_0 
+    order by
+        o1_0.created_at desc
+2026-06-11 14:10:00.394 [http-nio-8080-exec-9] INFO  p.s.o.controller.OrderController - POST /api/v1/orders – customer: samwreqay@example.com
+2026-06-11 14:10:00.395 [http-nio-8080-exec-9] INFO  p.s.o.service.OrderServiceImpl - Creating order for customer: samwreqay@example.com | product: PROD-005
+2026-06-11 14:10:00.396 [http-nio-8080-exec-9] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Finding inventory by product code: PROD-005
+2026-06-11 14:10:00.396 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        i1_0.id,
+        i1_0.available_quantity,
+        i1_0.created_at,
+        i1_0.product_code,
+        i1_0.product_name,
+        i1_0.reorder_level,
+        i1_0.reserved_quantity,
+        i1_0.unit_price,
+        i1_0.updated_at 
+    from
+        inventory i1_0 
+    where
+        i1_0.product_code=?
+2026-06-11 14:10:00.397 [http-nio-8080-exec-9] DEBUG p.s.o.dao.OrderDaoImpl - DAO: Persisting new order with number: ORD-1781167200397-5561
+2026-06-11 14:10:00.408 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        orders
+        (created_at, customer_email, customer_name, customer_phone, notes, order_number, product_code, product_name, quantity, shipping_address, status, total_amount, unit_price, updated_at) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-06-11 14:10:00.426 [http-nio-8080-exec-9] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Merging inventory for product: PROD-005
+2026-06-11 14:10:00.427 [http-nio-8080-exec-9] INFO  p.s.o.service.OrderServiceImpl - Order created successfully: ORD-1781167200397-5561 | Total: ₹5999.98
+2026-06-11 14:10:00.432 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    update
+        inventory 
+    set
+        available_quantity=?,
+        product_code=?,
+        product_name=?,
+        reorder_level=?,
+        reserved_quantity=?,
+        unit_price=?,
+        updated_at=? 
+    where
+        id=?
+2026-06-11 14:14:01.786 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-11 14:14:01.789 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-11 14:14:01.796 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown initiated...
+2026-06-11 14:14:01.801 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown completed.

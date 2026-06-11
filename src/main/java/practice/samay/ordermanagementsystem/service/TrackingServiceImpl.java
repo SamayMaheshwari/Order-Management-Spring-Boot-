@@ -6,12 +6,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import practice.samay.ordermanagementsystem.cache.ShipmentCacheService;
+import practice.samay.ordermanagementsystem.cache.TrackingCacheService;
+import practice.samay.ordermanagementsystem.dao.OrderDao;
 import practice.samay.ordermanagementsystem.dao.ShipmentDao;
 import practice.samay.ordermanagementsystem.dao.TrackingDao;
 import practice.samay.ordermanagementsystem.dto.request.TrackingRequest;
 import practice.samay.ordermanagementsystem.dto.response.TrackingResponse;
+import practice.samay.ordermanagementsystem.dto.response.ShipmentResponse;
 import practice.samay.ordermanagementsystem.enums.ShipmentStatus;
 import practice.samay.ordermanagementsystem.exception.ResourceNotFoundException;
+import practice.samay.ordermanagementsystem.model.Order;
 import practice.samay.ordermanagementsystem.model.Shipment;
 import practice.samay.ordermanagementsystem.model.Tracking;
 
@@ -31,6 +36,10 @@ public class TrackingServiceImpl implements TrackingService {
 
     private final TrackingDao trackingDao;
     private final ShipmentDao shipmentDao;
+    private final OrderDao orderDao;
+    private final TrackingCacheService trackingCacheService;
+    private final ShipmentCacheService shipmentCacheService;
+    private final HistoryEventPublisher historyEventPublisher;
 
     /**
      * Adds a tracking event to a shipment.
@@ -69,33 +78,51 @@ public class TrackingServiceImpl implements TrackingService {
             if (request.getStatus() == ShipmentStatus.DELIVERED && shipment.getDeliveredAt() == null) {
                 shipment.setDeliveredAt(LocalDateTime.now());
             }
-            shipmentDao.update(shipment);
+            Shipment updatedShipment = shipmentDao.update(shipment);
+            ShipmentResponse shipmentResponse = toShipmentResponse(updatedShipment, resolveOrderNumber(updatedShipment.getOrderId()));
+            shipmentCacheService.cacheSnapshot(shipmentResponse);
+            historyEventPublisher.publish("SHIPMENT", updatedShipment.getId(), "UPDATE", shipmentResponse);
         }
 
+        TrackingResponse trackingResponse = toResponse(savedTracking, shipment.getTrackingNumber());
+        trackingCacheService.cacheSnapshot(trackingResponse);
+        historyEventPublisher.publish("TRACKING", savedTracking.getId(), "CREATE", trackingResponse);
         log.info("Tracking event added for shipment {} at location: {}", shipment.getTrackingNumber(), request.getLocation());
-        return toResponse(savedTracking, shipment.getTrackingNumber());
+        return trackingResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public TrackingResponse getTrackingById(Long id) {
         log.debug("Fetching tracking event by id: {}", id);
+        TrackingResponse cachedTracking = trackingCacheService.getById(id).orElse(null);
+        if (cachedTracking != null) {
+            return cachedTracking;
+        }
         Tracking tracking = trackingDao.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tracking event not found with id: " + id));
         String trackingNumber = shipmentDao.findById(tracking.getShipmentId())
                 .map(Shipment::getTrackingNumber).orElse(null);
-        return toResponse(tracking, trackingNumber);
+        TrackingResponse trackingResponse = toResponse(tracking, trackingNumber);
+        trackingCacheService.cacheSnapshot(trackingResponse);
+        return trackingResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<TrackingResponse> getTrackingByShipmentId(Long shipmentId) {
         log.debug("Fetching all tracking events for shipment id: {}", shipmentId);
+        List<TrackingResponse> cachedTrackingEvents = trackingCacheService.getByShipmentId(shipmentId).orElse(null);
+        if (cachedTrackingEvents != null) {
+            return cachedTrackingEvents;
+        }
         Shipment shipment = shipmentDao.findById(shipmentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Shipment not found with id: " + shipmentId));
-        return trackingDao.findByShipmentId(shipmentId).stream()
+        List<TrackingResponse> trackingResponses = trackingDao.findByShipmentId(shipmentId).stream()
                 .map(t -> toResponse(t, shipment.getTrackingNumber()))
                 .collect(Collectors.toList());
+        trackingCacheService.cacheByShipmentId(shipmentId, trackingResponses);
+        return trackingResponses;
     }
 
     // ─── Private Helpers ──────────────────────────────────────────────────────
@@ -110,6 +137,28 @@ public class TrackingServiceImpl implements TrackingService {
                 .description(tracking.getDescription())
                 .eventTimestamp(tracking.getEventTimestamp())
                 .createdAt(tracking.getCreatedAt())
+                .build();
+    }
+
+    private String resolveOrderNumber(Long orderId) {
+        return orderDao.findById(orderId).map(Order::getOrderNumber).orElse(null);
+    }
+
+    private ShipmentResponse toShipmentResponse(Shipment shipment, String orderNumber) {
+        return ShipmentResponse.builder()
+                .id(shipment.getId())
+                .orderId(shipment.getOrderId())
+                .orderNumber(orderNumber)
+                .trackingNumber(shipment.getTrackingNumber())
+                .carrier(shipment.getCarrier())
+                .status(shipment.getStatus().name())
+                .shippingAddress(shipment.getShippingAddress())
+                .weight(shipment.getWeight())
+                .estimatedDelivery(shipment.getEstimatedDelivery())
+                .shippedAt(shipment.getShippedAt())
+                .deliveredAt(shipment.getDeliveredAt())
+                .createdAt(shipment.getCreatedAt())
+                .updatedAt(shipment.getUpdatedAt())
                 .build();
     }
 }

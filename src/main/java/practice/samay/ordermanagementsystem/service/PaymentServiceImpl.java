@@ -6,10 +6,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import practice.samay.ordermanagementsystem.cache.OrderCacheService;
+import practice.samay.ordermanagementsystem.cache.PaymentCacheService;
 import practice.samay.ordermanagementsystem.dao.OrderDao;
 import practice.samay.ordermanagementsystem.dao.PaymentDao;
 import practice.samay.ordermanagementsystem.dto.request.PaymentRequest;
 import practice.samay.ordermanagementsystem.dto.response.PaymentResponse;
+import practice.samay.ordermanagementsystem.dto.response.OrderResponse;
 import practice.samay.ordermanagementsystem.enums.OrderStatus;
 import practice.samay.ordermanagementsystem.enums.PaymentMethod;
 import practice.samay.ordermanagementsystem.enums.PaymentStatus;
@@ -31,6 +34,9 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentDao paymentDao;
     private final OrderDao orderDao;
+    private final PaymentCacheService paymentCacheService;
+    private final OrderCacheService orderCacheService;
+    private final HistoryEventPublisher historyEventPublisher;
 
 
     @Override
@@ -110,40 +116,66 @@ public class PaymentServiceImpl implements PaymentService {
         Payment completedPayment = paymentDao.update(savedPayment);
 
         order.setStatus(OrderStatus.CONFIRMED);
-        orderDao.update(order);
+        Order updatedOrder = orderDao.update(order);
+
+        PaymentResponse paymentResponse = toResponse(completedPayment, updatedOrder.getOrderNumber());
+        paymentCacheService.cacheSnapshot(paymentResponse);
+        OrderResponse orderResponse = toOrderResponse(updatedOrder);
+        orderCacheService.cacheSnapshot(orderResponse);
+        orderCacheService.evictListCaches();
+        historyEventPublisher.publish("PAYMENT", completedPayment.getId(), "CREATE", paymentResponse);
+        historyEventPublisher.publish("ORDER", updatedOrder.getId(), "UPDATE", orderResponse);
 
         log.info("[PAYMENT GATEWAY] Payment {} completed successfully. Order {} status is now CONFIRMED.", 
                 paymentReference, order.getOrderNumber());
-        return toResponse(completedPayment, order.getOrderNumber());
+        return paymentResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public PaymentResponse getPaymentById(Long id) {
         log.debug("Fetching payment by id: {}", id);
+        PaymentResponse cachedPayment = paymentCacheService.getById(id).orElse(null);
+        if (cachedPayment != null) {
+            return cachedPayment;
+        }
         Payment payment = findPaymentOrThrow(id);
         String orderNumber = resolveOrderNumber(payment.getOrderId());
-        return toResponse(payment, orderNumber);
+        PaymentResponse paymentResponse = toResponse(payment, orderNumber);
+        paymentCacheService.cacheSnapshot(paymentResponse);
+        return paymentResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public PaymentResponse getPaymentByReference(String reference) {
         log.debug("Fetching payment by reference: {}", reference);
+        PaymentResponse cachedPayment = paymentCacheService.getByReference(reference).orElse(null);
+        if (cachedPayment != null) {
+            return cachedPayment;
+        }
         Payment payment = paymentDao.findByPaymentReference(reference)
                 .orElseThrow(() -> new ResourceNotFoundException("Payment not found with reference: " + reference));
-        return toResponse(payment, resolveOrderNumber(payment.getOrderId()));
+        PaymentResponse paymentResponse = toResponse(payment, resolveOrderNumber(payment.getOrderId()));
+        paymentCacheService.cacheSnapshot(paymentResponse);
+        return paymentResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<PaymentResponse> getPaymentsByOrderId(Long orderId) {
         log.debug("Fetching payments for order id: {}", orderId);
+        List<PaymentResponse> cachedPayments = paymentCacheService.getByOrderId(orderId).orElse(null);
+        if (cachedPayments != null) {
+            return cachedPayments;
+        }
         Order order = orderDao.findById(orderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
-        return paymentDao.findByOrderId(orderId).stream()
+        List<PaymentResponse> payments = paymentDao.findByOrderId(orderId).stream()
                 .map(p -> toResponse(p, order.getOrderNumber()))
                 .collect(Collectors.toList());
+        paymentCacheService.cacheByOrderId(orderId, payments);
+        return payments;
     }
 
     @Override
@@ -158,8 +190,11 @@ public class PaymentServiceImpl implements PaymentService {
                 payment.setPaidAt(LocalDateTime.now());
             }
             Payment updated = paymentDao.update(payment);
+            PaymentResponse paymentResponse = toResponse(updated, resolveOrderNumber(updated.getOrderId()));
+            paymentCacheService.cacheSnapshot(paymentResponse);
+            historyEventPublisher.publish("PAYMENT", updated.getId(), "UPDATE", paymentResponse);
             log.info("Payment {} status updated to: {}", id, newStatus);
-            return toResponse(updated, resolveOrderNumber(updated.getOrderId()));
+            return paymentResponse;
         } catch (IllegalArgumentException e) {
             throw new BusinessException("Invalid payment status: " + status +
                     ". Valid values: PENDING, COMPLETED, FAILED, REFUNDED");
@@ -175,6 +210,26 @@ public class PaymentServiceImpl implements PaymentService {
 
     private String resolveOrderNumber(Long orderId) {
         return orderDao.findById(orderId).map(Order::getOrderNumber).orElse(null);
+    }
+
+    private OrderResponse toOrderResponse(Order order) {
+        return OrderResponse.builder()
+                .id(order.getId())
+                .orderNumber(order.getOrderNumber())
+                .customerName(order.getCustomerName())
+                .customerEmail(order.getCustomerEmail())
+                .customerPhone(order.getCustomerPhone())
+                .shippingAddress(order.getShippingAddress())
+                .productCode(order.getProductCode())
+                .productName(order.getProductName())
+                .quantity(order.getQuantity())
+                .unitPrice(order.getUnitPrice())
+                .totalAmount(order.getTotalAmount())
+                .status(order.getStatus().name())
+                .notes(order.getNotes())
+                .createdAt(order.getCreatedAt())
+                .updatedAt(order.getUpdatedAt())
+                .build();
     }
 
     private String generatePaymentReference() {

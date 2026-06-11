@@ -6,11 +6,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import practice.samay.ordermanagementsystem.cache.InventoryCacheService;
+import practice.samay.ordermanagementsystem.cache.OrderCacheService;
+import practice.samay.ordermanagementsystem.cache.ShipmentCacheService;
 import practice.samay.ordermanagementsystem.dao.InventoryDao;
 import practice.samay.ordermanagementsystem.dao.OrderDao;
 import practice.samay.ordermanagementsystem.dao.ShipmentDao;
 import practice.samay.ordermanagementsystem.dto.request.ShipmentRequest;
 import practice.samay.ordermanagementsystem.dto.response.ShipmentResponse;
+import practice.samay.ordermanagementsystem.dto.response.OrderResponse;
 import practice.samay.ordermanagementsystem.enums.OrderStatus;
 import practice.samay.ordermanagementsystem.enums.ShipmentStatus;
 import practice.samay.ordermanagementsystem.exception.BusinessException;
@@ -35,6 +39,10 @@ public class ShipmentServiceImpl implements ShipmentService {
     private final ShipmentDao shipmentDao;
     private final OrderDao orderDao;
     private final InventoryDao inventoryDao;
+    private final ShipmentCacheService shipmentCacheService;
+    private final OrderCacheService orderCacheService;
+    private final InventoryCacheService inventoryCacheService;
+    private final HistoryEventPublisher historyEventPublisher;
 
     /**
      * Creates a shipment for a confirmed/processing order.
@@ -70,59 +78,94 @@ public class ShipmentServiceImpl implements ShipmentService {
                 .build();
 
         Shipment savedShipment = shipmentDao.save(shipment);
+        ShipmentResponse shipmentResponse = toResponse(savedShipment, order.getOrderNumber());
+        shipmentCacheService.cacheSnapshot(shipmentResponse);
+        shipmentCacheService.evictAll();
 
         // Move order to PROCESSING state
         if (order.getStatus() == OrderStatus.CONFIRMED) {
             order.setStatus(OrderStatus.PROCESSING);
-            orderDao.update(order);
+            Order updatedOrder = orderDao.update(order);
+            OrderResponse orderResponse = toOrderResponse(updatedOrder);
+            orderCacheService.cacheSnapshot(orderResponse);
+            orderCacheService.evictListCaches();
+            historyEventPublisher.publish("ORDER", updatedOrder.getId(), "UPDATE", orderResponse);
         }
 
         // Deduct reserved inventory (product is now being shipped)
-        inventoryDao.findByProductCode(order.getProductCode()).ifPresent(inventory -> {
+        inventoryCacheService.getByProductCode(order.getProductCode())
+                .or(() -> inventoryDao.findByProductCode(order.getProductCode()))
+                .ifPresent(inventory -> {
             inventory.setReservedQuantity(Math.max(0, inventory.getReservedQuantity() - order.getQuantity()));
             inventoryDao.update(inventory);
+            inventoryCacheService.cacheSnapshot(inventory);
         });
 
+        historyEventPublisher.publish("SHIPMENT", savedShipment.getId(), "CREATE", shipmentResponse);
+        inventoryCacheService.evictAll();
+
         log.info("Shipment created: {} | Carrier: {}", trackingNumber, request.getCarrier());
-        return toResponse(savedShipment, order.getOrderNumber());
+        return shipmentResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public ShipmentResponse getShipmentById(Long id) {
         log.debug("Fetching shipment by id: {}", id);
+        ShipmentResponse cachedShipment = shipmentCacheService.getById(id).orElse(null);
+        if (cachedShipment != null) {
+            return cachedShipment;
+        }
         Shipment shipment = findShipmentOrThrow(id);
-        return toResponse(shipment, resolveOrderNumber(shipment.getOrderId()));
+        ShipmentResponse shipmentResponse = toResponse(shipment, resolveOrderNumber(shipment.getOrderId()));
+        shipmentCacheService.cacheSnapshot(shipmentResponse);
+        return shipmentResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public ShipmentResponse getShipmentByTrackingNumber(String trackingNumber) {
         log.debug("Fetching shipment by tracking number: {}", trackingNumber);
+        ShipmentResponse cachedShipment = shipmentCacheService.getByTrackingNumber(trackingNumber).orElse(null);
+        if (cachedShipment != null) {
+            return cachedShipment;
+        }
         Shipment shipment = shipmentDao.findByTrackingNumber(trackingNumber)
                 .orElseThrow(() -> new ResourceNotFoundException("Shipment not found with tracking number: " + trackingNumber));
-        return toResponse(shipment, resolveOrderNumber(shipment.getOrderId()));
+        ShipmentResponse shipmentResponse = toResponse(shipment, resolveOrderNumber(shipment.getOrderId()));
+        shipmentCacheService.cacheSnapshot(shipmentResponse);
+        return shipmentResponse;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ShipmentResponse> getShipmentsByOrderId(Long orderId) {
         log.debug("Fetching shipments for order id: {}", orderId);
+        List<ShipmentResponse> cachedShipments = shipmentCacheService.getByOrderId(orderId).orElse(null);
+        if (cachedShipments != null) {
+            return cachedShipments;
+        }
         orderDao.findById(orderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
         String orderNumber = resolveOrderNumber(orderId);
-        return shipmentDao.findByOrderId(orderId).stream()
+        List<ShipmentResponse> shipments = shipmentDao.findByOrderId(orderId).stream()
                 .map(s -> toResponse(s, orderNumber))
                 .collect(Collectors.toList());
+        shipmentCacheService.cacheByOrderId(orderId, shipments);
+        return shipments;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ShipmentResponse> getAllShipments() {
         log.debug("Fetching all shipments");
-        return shipmentDao.findAll().stream()
+        return shipmentCacheService.getAll().orElseGet(() -> {
+            List<ShipmentResponse> shipments = shipmentDao.findAll().stream()
                 .map(s -> toResponse(s, resolveOrderNumber(s.getOrderId())))
                 .collect(Collectors.toList());
+            shipmentCacheService.cacheAll(shipments);
+            return shipments;
+        });
     }
 
     /**
@@ -143,7 +186,11 @@ public class ShipmentServiceImpl implements ShipmentService {
                 // Update order status to SHIPPED
                 orderDao.findById(shipment.getOrderId()).ifPresent(order -> {
                     order.setStatus(OrderStatus.SHIPPED);
-                    orderDao.update(order);
+                    Order updatedOrder = orderDao.update(order);
+                    OrderResponse orderResponse = toOrderResponse(updatedOrder);
+                    orderCacheService.cacheSnapshot(orderResponse);
+                    orderCacheService.evictListCaches();
+                    historyEventPublisher.publish("ORDER", updatedOrder.getId(), "UPDATE", orderResponse);
                 });
             }
 
@@ -152,14 +199,22 @@ public class ShipmentServiceImpl implements ShipmentService {
                 // Update order status to DELIVERED
                 orderDao.findById(shipment.getOrderId()).ifPresent(order -> {
                     order.setStatus(OrderStatus.DELIVERED);
-                    orderDao.update(order);
+                    Order updatedOrder = orderDao.update(order);
+                    OrderResponse orderResponse = toOrderResponse(updatedOrder);
+                    orderCacheService.cacheSnapshot(orderResponse);
+                    orderCacheService.evictListCaches();
+                    historyEventPublisher.publish("ORDER", updatedOrder.getId(), "UPDATE", orderResponse);
                     log.info("Order {} marked as DELIVERED.", order.getOrderNumber());
                 });
             }
 
             Shipment updated = shipmentDao.update(shipment);
+            ShipmentResponse shipmentResponse = toResponse(updated, resolveOrderNumber(shipment.getOrderId()));
+            shipmentCacheService.cacheSnapshot(shipmentResponse);
+            shipmentCacheService.evictAll();
+            historyEventPublisher.publish("SHIPMENT", updated.getId(), "UPDATE", shipmentResponse);
             log.info("Shipment {} status updated to: {}", id, newStatus);
-            return toResponse(updated, resolveOrderNumber(shipment.getOrderId()));
+            return shipmentResponse;
         } catch (IllegalArgumentException e) {
             throw new BusinessException("Invalid shipment status: " + status +
                     ". Valid values: PREPARING, DISPATCHED, IN_TRANSIT, OUT_FOR_DELIVERY, DELIVERED, RETURNED");
@@ -175,6 +230,26 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     private String resolveOrderNumber(Long orderId) {
         return orderDao.findById(orderId).map(Order::getOrderNumber).orElse(null);
+    }
+
+    private OrderResponse toOrderResponse(Order order) {
+        return OrderResponse.builder()
+                .id(order.getId())
+                .orderNumber(order.getOrderNumber())
+                .customerName(order.getCustomerName())
+                .customerEmail(order.getCustomerEmail())
+                .customerPhone(order.getCustomerPhone())
+                .shippingAddress(order.getShippingAddress())
+                .productCode(order.getProductCode())
+                .productName(order.getProductName())
+                .quantity(order.getQuantity())
+                .unitPrice(order.getUnitPrice())
+                .totalAmount(order.getTotalAmount())
+                .status(order.getStatus().name())
+                .notes(order.getNotes())
+                .createdAt(order.getCreatedAt())
+                .updatedAt(order.getUpdatedAt())
+                .build();
     }
 
     private String generateTrackingNumber() {

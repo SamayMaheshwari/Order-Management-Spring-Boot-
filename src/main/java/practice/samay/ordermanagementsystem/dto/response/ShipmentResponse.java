@@ -26,9 +26,9 @@ public class ShipmentResponse {
 
     @Schema(description = "Associated order ID", example = "1")
     private Long orderId;
-
-    @Schema(description = "Associated order number", example = "ORD-1718000000000-4231")
-    private String orderNumber;
+//
+//    @Schema(description = "Associated order number", example = "ORD-1718000000000-4231")
+//    private String orderNumber;
 
     @Schema(description = "Auto-generated tracking number", example = "TRK-1718000000000-5512")
     private String trackingNumber;
@@ -48,15 +48,15 @@ public class ShipmentResponse {
     @Schema(description = "Expected delivery date", example = "2026-06-20")
     private LocalDate estimatedDelivery;
 
-    @Schema(description = "Timestamp when shipment was dispatched")
-    private LocalDateTime shippedAt;
-
-    @Schema(description = "Timestamp when shipment was delivered")
-    private LocalDateTime deliveredAt;
-
-    @Schema(description = "Shipment creation timestamp")
-    private LocalDateTime createdAt;
-
-    @Schema(description = "Last update timestamp")
-    private LocalDateTime updatedAt;
+//    @Schema(description = "Timestamp when shipment was dispatched")
+//    private LocalDateTime shippedAt;
+//
+//    @Schema(description = "Timestamp when shipment was delivered")
+//    private LocalDateTime deliveredAt;
+//
+//    @Schema(description = "Shipment creation timestamp")
+//    private LocalDateTime createdAt;
+//
+//    @Schema(description = "Last update timestamp")
+//    private LocalDateTime updatedAt;
 }

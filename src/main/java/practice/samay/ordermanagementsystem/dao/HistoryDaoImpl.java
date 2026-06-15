@@ -8,11 +8,10 @@ import practice.samay.ordermanagementsystem.model.HistoryRecord;
 
 @Repository
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class HistoryDaoImpl implements HistoryDao {
+public class HistoryDaoImpl {
 
 	private final SessionFactory sessionFactory;
 
-	@Override
 	public HistoryRecord save(HistoryRecord historyRecord) {
 		sessionFactory.getCurrentSession().persist(historyRecord);
 		return historyRecord;

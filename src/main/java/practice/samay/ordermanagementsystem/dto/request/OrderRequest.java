@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-/**
- * Request DTO for creating a new order.
- * All fields are validated before hitting the service layer.
- */
+
 @Data
 @Builder
 @NoArgsConstructor

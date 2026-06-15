@@ -48,12 +48,12 @@ public class PaymentResponse {
     @Schema(description = "Payment remarks")
     private String remarks;
 
-    @Schema(description = "Timestamp when payment was completed")
-    private LocalDateTime paidAt;
-
-    @Schema(description = "Payment creation timestamp")
-    private LocalDateTime createdAt;
-
-    @Schema(description = "Last update timestamp")
-    private LocalDateTime updatedAt;
+//    @Schema(description = "Timestamp when payment was completed")
+//    private LocalDateTime paidAt;
+//
+//    @Schema(description = "Payment creation timestamp")
+//    private LocalDateTime createdAt;
+//
+//    @Schema(description = "Last update timestamp")
+//    private LocalDateTime updatedAt;
 }

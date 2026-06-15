@@ -13,32 +13,29 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Hibernate SessionFactory-based implementation of OrderDao.
+ * Hibernate SessionFactory-based implementation of order persistence operations.
  * All operations use getCurrentSession() and run within @Transactional boundaries
  * defined in the Service layer.
  */
 @Repository
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class OrderDaoImpl implements OrderDao {
+public class OrderDaoImpl {
 
     private static final Logger log = LoggerFactory.getLogger(OrderDaoImpl.class);
 
     private final SessionFactory sessionFactory;
 
-    @Override
     public Order save(Order order) {
         log.debug("DAO: Persisting new order with number: {}", order.getOrderNumber());
         sessionFactory.getCurrentSession().persist(order);
         return order;
     }
 
-    @Override
     public Order update(Order order) {
         log.debug("DAO: Merging order with id: {}", order.getId());
         return sessionFactory.getCurrentSession().merge(order);
     }
 
-    @Override
     public Optional<Order> findById(Long id) {
         log.debug("DAO: Finding order by id: {}", id);
         return Optional.ofNullable(
@@ -46,7 +43,6 @@ public class OrderDaoImpl implements OrderDao {
         );
     }
 
-    @Override
     public Optional<Order> findByOrderNumber(String orderNumber) {
         log.debug("DAO: Finding order by number: {}", orderNumber);
         return sessionFactory.getCurrentSession()
@@ -55,7 +51,6 @@ public class OrderDaoImpl implements OrderDao {
                 .uniqueResultOptional();
     }
 
-    @Override
     public List<Order> findAll() {
         log.debug("DAO: Fetching all orders");
         return sessionFactory.getCurrentSession()
@@ -63,7 +58,6 @@ public class OrderDaoImpl implements OrderDao {
                 .getResultList();
     }
 
-    @Override
     public List<Order> findByStatus(OrderStatus status) {
         log.debug("DAO: Fetching orders with status: {}", status);
         return sessionFactory.getCurrentSession()
@@ -72,7 +66,6 @@ public class OrderDaoImpl implements OrderDao {
                 .getResultList();
     }
 
-    @Override
     public List<Order> findByCustomerEmail(String email) {
         log.debug("DAO: Fetching orders for customer email: {}", email);
         return sessionFactory.getCurrentSession()
@@ -81,7 +74,6 @@ public class OrderDaoImpl implements OrderDao {
                 .getResultList();
     }
 
-    @Override
     public void deleteById(Long id) {
         log.debug("DAO: Deleting order with id: {}", id);
         findById(id).ifPresent(order ->

@@ -10,9 +10,6 @@ import practice.samay.ordermanagementsystem.enums.PaymentMethod;
 
 import java.math.BigDecimal;
 
-/**
- * Request DTO for processing a payment against an order.
- */
 @Data
 @Builder
 @NoArgsConstructor
@@ -46,3 +43,4 @@ public class PaymentRequest {
     @Schema(description = "Optional payment remarks or notes", example = "Paid via Google Pay")
     private String remarks;
 }
+

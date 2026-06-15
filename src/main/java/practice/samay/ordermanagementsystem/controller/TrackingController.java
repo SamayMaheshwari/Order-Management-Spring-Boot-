@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import practice.samay.ordermanagementsystem.dto.request.TrackingRequest;
 import practice.samay.ordermanagementsystem.dto.response.ApiResponse;
 import practice.samay.ordermanagementsystem.dto.response.TrackingResponse;
-import practice.samay.ordermanagementsystem.service.TrackingService;
+import practice.samay.ordermanagementsystem.service.TrackingServiceImpl;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class TrackingController {
 
     private static final Logger log = LoggerFactory.getLogger(TrackingController.class);
 
-    private final TrackingService trackingService;
+    private final TrackingServiceImpl trackingService;
 
     //  CREATE
 

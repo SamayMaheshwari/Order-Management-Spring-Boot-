@@ -12,24 +12,22 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Hibernate SessionFactory-based implementation of TrackingDao.
+ * Hibernate SessionFactory-based implementation of tracking persistence operations.
  */
 @Repository
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class TrackingDaoImpl implements TrackingDao {
+public class TrackingDaoImpl {
 
     private static final Logger log = LoggerFactory.getLogger(TrackingDaoImpl.class);
 
     private final SessionFactory sessionFactory;
 
-    @Override
     public Tracking save(Tracking tracking) {
         log.debug("DAO: Persisting tracking event for shipment id: {}", tracking.getShipmentId());
         sessionFactory.getCurrentSession().persist(tracking);
         return tracking;
     }
 
-    @Override
     public Optional<Tracking> findById(Long id) {
         log.debug("DAO: Finding tracking event by id: {}", id);
         return Optional.ofNullable(
@@ -37,7 +35,6 @@ public class TrackingDaoImpl implements TrackingDao {
         );
     }
 
-    @Override
     public List<Tracking> findByShipmentId(Long shipmentId) {
         log.debug("DAO: Finding tracking events for shipment id: {}", shipmentId);
         return sessionFactory.getCurrentSession()

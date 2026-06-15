@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import practice.samay.ordermanagementsystem.dto.request.PaymentRequest;
 import practice.samay.ordermanagementsystem.dto.response.ApiResponse;
 import practice.samay.ordermanagementsystem.dto.response.PaymentResponse;
-import practice.samay.ordermanagementsystem.service.PaymentService;
+import practice.samay.ordermanagementsystem.service.PaymentServiceImpl;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class PaymentController {
 
     private static final Logger log = LoggerFactory.getLogger(PaymentController.class);
 
-    private final PaymentService paymentService;
+    private final PaymentServiceImpl paymentService;
 
     // CREATE
 
@@ -83,18 +83,18 @@ public class PaymentController {
 
     //  UPDATE
 
-    @PutMapping("/{id}/status")
-    @Operation(
-        summary = "Update payment status",
-        description = "Manually updates a payment status. " +
-                      "Valid values: PENDING, COMPLETED, FAILED, REFUNDED"
-    )
-    public ResponseEntity<ApiResponse<PaymentResponse>> updatePaymentStatus(
-            @Parameter(description = "Payment ID", example = "1") @PathVariable Long id,
-            @Parameter(description = "New payment status", example = "REFUNDED")
-            @RequestParam String status) {
-        log.info("PUT /api/v1/payments/{}/status – new status: {}", id, status);
-        return ResponseEntity.ok(ApiResponse.success(
-                "Payment status updated successfully", paymentService.updatePaymentStatus(id, status)));
-    }
+//    @PutMapping("/{id}/status")
+//    @Operation(
+//        summary = "Update payment status",
+//        description = "Manually updates a payment status. " +
+//                      "Valid values: PENDING, COMPLETED, FAILED, REFUNDED"
+//    )
+//    public ResponseEntity<ApiResponse<PaymentResponse>> updatePaymentStatus(
+//            @Parameter(description = "Payment ID", example = "1") @PathVariable Long id,
+//            @Parameter(description = "New payment status", example = "REFUNDED")
+//            @RequestParam String status) {
+//        log.info("PUT /api/v1/payments/{}/status – new status: {}", id, status);
+//        return ResponseEntity.ok(ApiResponse.success(
+//                "Payment status updated successfully", paymentService.updatePaymentStatus(id, status)));
+//    }
 }

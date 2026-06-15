@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import practice.samay.ordermanagementsystem.dto.request.ShipmentRequest;
 import practice.samay.ordermanagementsystem.dto.response.ApiResponse;
 import practice.samay.ordermanagementsystem.dto.response.ShipmentResponse;
-import practice.samay.ordermanagementsystem.service.ShipmentService;
+import practice.samay.ordermanagementsystem.service.ShipmentServiceImpl;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class ShipmentController {
 
     private static final Logger log = LoggerFactory.getLogger(ShipmentController.class);
 
-    private final ShipmentService shipmentService;
+    private final ShipmentServiceImpl shipmentService;
 
     //  CREATE
 
@@ -95,20 +95,20 @@ public class ShipmentController {
 
     //  UPDATE
 
-    @PutMapping("/{id}/status")
-    @Operation(
-        summary = "Update shipment status",
-        description = "Updates the status of a shipment. " +
-                      "DISPATCHED → sets shippedAt and marks order SHIPPED. " +
-                      "DELIVERED → sets deliveredAt and marks order DELIVERED. " +
-                      "Valid values: PREPARING, DISPATCHED, IN_TRANSIT, OUT_FOR_DELIVERY, DELIVERED, RETURNED"
-    )
-    public ResponseEntity<ApiResponse<ShipmentResponse>> updateShipmentStatus(
-            @Parameter(description = "Shipment ID", example = "1") @PathVariable Long id,
-            @Parameter(description = "New shipment status", example = "IN_TRANSIT")
-            @RequestParam String status) {
-        log.info("PUT /api/v1/shipments/{}/status – new status: {}", id, status);
-        return ResponseEntity.ok(ApiResponse.success(
-                "Shipment status updated successfully", shipmentService.updateShipmentStatus(id, status)));
-    }
+////    @PutMapping("/{id}/status")
+////    @Operation(
+////        summary = "Update shipment status",
+////        description = "Updates the status of a shipment. " +
+////                      "DISPATCHED → sets shippedAt and marks order SHIPPED. " +
+////                      "DELIVERED → sets deliveredAt and marks order DELIVERED. " +
+////                      "Valid values: PREPARING, DISPATCHED, IN_TRANSIT, OUT_FOR_DELIVERY, DELIVERED, RETURNED"
+////    )
+//    public ResponseEntity<ApiResponse<ShipmentResponse>> updateShipmentStatus(
+//            @Parameter(description = "Shipment ID", example = "1") @PathVariable Long id,
+//            @Parameter(description = "New shipment status", example = "IN_TRANSIT")
+//            @RequestParam String status) {
+//        log.info("PUT /api/v1/shipments/{}/status – new status: {}", id, status);
+//        return ResponseEntity.ok(ApiResponse.success(
+//                "Shipment status updated successfully", shipmentService.updateShipmentStatus(id, status)));
+//    }
 }

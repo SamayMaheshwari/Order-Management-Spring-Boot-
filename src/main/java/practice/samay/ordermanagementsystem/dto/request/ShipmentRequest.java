@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-/**
- * Request DTO for creating a shipment against a confirmed order.
- */
+
 @Data
 @Builder
 @NoArgsConstructor

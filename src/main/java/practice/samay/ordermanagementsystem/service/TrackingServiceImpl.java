@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import practice.samay.ordermanagementsystem.cache.ShipmentCacheService;
 import practice.samay.ordermanagementsystem.cache.TrackingCacheService;
-import practice.samay.ordermanagementsystem.dao.OrderDao;
-import practice.samay.ordermanagementsystem.dao.ShipmentDao;
-import practice.samay.ordermanagementsystem.dao.TrackingDao;
+import practice.samay.ordermanagementsystem.dao.OrderDaoImpl;
+import practice.samay.ordermanagementsystem.dao.ShipmentDaoImpl;
+import practice.samay.ordermanagementsystem.dao.TrackingDaoImpl;
 import practice.samay.ordermanagementsystem.dto.request.TrackingRequest;
 import practice.samay.ordermanagementsystem.dto.response.TrackingResponse;
 import practice.samay.ordermanagementsystem.dto.response.ShipmentResponse;
@@ -30,13 +30,13 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class TrackingServiceImpl implements TrackingService {
+public class TrackingServiceImpl {
 
     private static final Logger log = LoggerFactory.getLogger(TrackingServiceImpl.class);
 
-    private final TrackingDao trackingDao;
-    private final ShipmentDao shipmentDao;
-    private final OrderDao orderDao;
+    private final TrackingDaoImpl trackingDao;
+    private final ShipmentDaoImpl shipmentDao;
+    private final OrderDaoImpl orderDao;
     private final TrackingCacheService trackingCacheService;
     private final ShipmentCacheService shipmentCacheService;
     private final HistoryEventPublisher historyEventPublisher;
@@ -45,7 +45,6 @@ public class TrackingServiceImpl implements TrackingService {
      * Adds a tracking event to a shipment.
      * Updates the shipment's status and timestamps accordingly.
      */
-    @Override
     @Transactional
     public TrackingResponse addTrackingEvent(TrackingRequest request) {
         log.info("Adding tracking event for shipment id: {} | status: {}", request.getShipmentId(), request.getStatus());
@@ -91,7 +90,6 @@ public class TrackingServiceImpl implements TrackingService {
         return trackingResponse;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public TrackingResponse getTrackingById(Long id) {
         log.debug("Fetching tracking event by id: {}", id);
@@ -108,7 +106,6 @@ public class TrackingServiceImpl implements TrackingService {
         return trackingResponse;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<TrackingResponse> getTrackingByShipmentId(Long shipmentId) {
         log.debug("Fetching all tracking events for shipment id: {}", shipmentId);
@@ -135,10 +132,21 @@ public class TrackingServiceImpl implements TrackingService {
                 .location(tracking.getLocation())
                 .status(tracking.getStatus() != null ? tracking.getStatus().name() : null)
                 .description(tracking.getDescription())
-                .eventTimestamp(tracking.getEventTimestamp())
-                .createdAt(tracking.getCreatedAt())
                 .build();
     }
+
+//    private TrackingResponse toResponse(Tracking tracking, String trackingNumber) {
+//        return TrackingResponse.builder()
+//                .id(tracking.getId())
+//                .shipmentId(tracking.getShipmentId())
+//                .trackingNumber(trackingNumber)
+//                .location(tracking.getLocation())
+//                .status(tracking.getStatus() != null ? tracking.getStatus().name() : null)
+//                .description(tracking.getDescription())
+//                .eventTimestamp(tracking.getEventTimestamp())
+//                .createdAt(tracking.getCreatedAt())
+//                .build();
+//    }
 
     private String resolveOrderNumber(Long orderId) {
         return orderDao.findById(orderId).map(Order::getOrderNumber).orElse(null);
@@ -147,18 +155,30 @@ public class TrackingServiceImpl implements TrackingService {
     private ShipmentResponse toShipmentResponse(Shipment shipment, String orderNumber) {
         return ShipmentResponse.builder()
                 .id(shipment.getId())
-                .orderId(shipment.getOrderId())
-                .orderNumber(orderNumber)
                 .trackingNumber(shipment.getTrackingNumber())
                 .carrier(shipment.getCarrier())
                 .status(shipment.getStatus().name())
                 .shippingAddress(shipment.getShippingAddress())
                 .weight(shipment.getWeight())
                 .estimatedDelivery(shipment.getEstimatedDelivery())
-                .shippedAt(shipment.getShippedAt())
-                .deliveredAt(shipment.getDeliveredAt())
-                .createdAt(shipment.getCreatedAt())
-                .updatedAt(shipment.getUpdatedAt())
                 .build();
     }
+
+//    private ShipmentResponse toShipmentResponse(Shipment shipment, String orderNumber) {
+//        return ShipmentResponse.builder()
+//                .id(shipment.getId())
+//                .orderId(shipment.getOrderId())
+//                .orderNumber(orderNumber)
+//                .trackingNumber(shipment.getTrackingNumber())
+//                .carrier(shipment.getCarrier())
+//                .status(shipment.getStatus().name())
+//                .shippingAddress(shipment.getShippingAddress())
+//                .weight(shipment.getWeight())
+//                .estimatedDelivery(shipment.getEstimatedDelivery())
+//                .shippedAt(shipment.getShippedAt())
+//                .deliveredAt(shipment.getDeliveredAt())
+//                .createdAt(shipment.getCreatedAt())
+//                .updatedAt(shipment.getUpdatedAt())
+//                .build();
+//    }
 }

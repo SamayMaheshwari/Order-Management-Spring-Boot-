@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import practice.samay.ordermanagementsystem.dao.InventoryDao;
+import practice.samay.ordermanagementsystem.dao.InventoryDaoImpl;
 import practice.samay.ordermanagementsystem.model.Inventory;
 
 import java.math.BigDecimal;
@@ -21,7 +21,7 @@ public class DataSeeder implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(DataSeeder.class);
 
-    private final InventoryDao inventoryDao;
+    private final InventoryDaoImpl inventoryDao;
 
     @Override
     @Transactional

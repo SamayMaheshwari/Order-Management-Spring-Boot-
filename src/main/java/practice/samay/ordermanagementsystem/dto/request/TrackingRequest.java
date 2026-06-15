@@ -12,9 +12,7 @@ import practice.samay.ordermanagementsystem.enums.ShipmentStatus;
 
 import java.time.LocalDateTime;
 
-/**
- * Request DTO for adding a tracking event to a shipment.
- */
+
 @Data
 @Builder
 @NoArgsConstructor

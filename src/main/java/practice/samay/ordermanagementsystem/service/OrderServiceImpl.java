@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import practice.samay.ordermanagementsystem.cache.InventoryCacheService;
 import practice.samay.ordermanagementsystem.cache.OrderCacheService;
-import practice.samay.ordermanagementsystem.dao.InventoryDao;
-import practice.samay.ordermanagementsystem.dao.OrderDao;
+import practice.samay.ordermanagementsystem.dao.InventoryDaoImpl;
+import practice.samay.ordermanagementsystem.dao.OrderDaoImpl;
 import practice.samay.ordermanagementsystem.dto.request.OrderRequest;
 import practice.samay.ordermanagementsystem.dto.response.OrderResponse;
 import practice.samay.ordermanagementsystem.enums.OrderStatus;
@@ -26,18 +26,17 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class OrderServiceImpl implements OrderService {
+public class OrderServiceImpl {
 
     private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 
-    private final OrderDao orderDao;
-    private final InventoryDao inventoryDao;
+    private final OrderDaoImpl orderDao;
+    private final InventoryDaoImpl inventoryDao;
     private final OrderCacheService orderCacheService;
     private final InventoryCacheService inventoryCacheService;
     private final HistoryEventPublisher historyEventPublisher;
 
 
-    @Override
     @Transactional
     public OrderResponse createOrder(OrderRequest request) {
         log.info("Creating order for customer: {} | product: {}", request.getCustomerEmail(), request.getProductCode());
@@ -98,7 +97,6 @@ public class OrderServiceImpl implements OrderService {
         return orderResponse;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public OrderResponse getOrderById(Long id) {
         log.debug("Fetching order by id: {}", id);
@@ -111,7 +109,6 @@ public class OrderServiceImpl implements OrderService {
         return orderResponse;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public OrderResponse getOrderByOrderNumber(String orderNumber) {
         log.debug("Fetching order by number: {}", orderNumber);
@@ -126,7 +123,6 @@ public class OrderServiceImpl implements OrderService {
         return orderResponse;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<OrderResponse> getAllOrders() {
         log.debug("Fetching all orders");
@@ -137,7 +133,6 @@ public class OrderServiceImpl implements OrderService {
         });
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<OrderResponse> getOrdersByStatus(String status) {
         log.debug("Fetching orders with status: {}", status);
@@ -153,7 +148,6 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    @Override
     @Transactional
     public OrderResponse updateOrderStatus(Long id, String status) {
         log.info("Updating order {} status to: {}", id, status);
@@ -175,7 +169,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-    @Override
     @Transactional
     public void cancelOrder(Long id) {
         log.info("Cancelling order with id: {}", id);
@@ -226,19 +219,26 @@ public class OrderServiceImpl implements OrderService {
         return OrderResponse.builder()
                 .id(order.getId())
                 .orderNumber(order.getOrderNumber())
-                .customerName(order.getCustomerName())
-                .customerEmail(order.getCustomerEmail())
-                .customerPhone(order.getCustomerPhone())
-                .shippingAddress(order.getShippingAddress())
-                .productCode(order.getProductCode())
-                .productName(order.getProductName())
-                .quantity(order.getQuantity())
-                .unitPrice(order.getUnitPrice())
-                .totalAmount(order.getTotalAmount())
-                .status(order.getStatus().name())
-                .notes(order.getNotes())
-                .createdAt(order.getCreatedAt())
-                .updatedAt(order.getUpdatedAt())
                 .build();
     }
+
+//    private OrderResponse toResponse(Order order) {
+//        return OrderResponse.builder()
+//                .id(order.getId())
+//                .orderNumber(order.getOrderNumber())
+//                .customerName(order.getCustomerName())
+//                .customerEmail(order.getCustomerEmail())
+//                .customerPhone(order.getCustomerPhone())
+//                .shippingAddress(order.getShippingAddress())
+//                .productCode(order.getProductCode())
+//                .productName(order.getProductName())
+//                .quantity(order.getQuantity())
+//                .unitPrice(order.getUnitPrice())
+//                .totalAmount(order.getTotalAmount())
+//                .status(order.getStatus().name())
+//                .notes(order.getNotes())
+//                .createdAt(order.getCreatedAt())
+//                .updatedAt(order.getUpdatedAt())
+//                .build();
+//    }
 }

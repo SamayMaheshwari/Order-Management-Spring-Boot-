@@ -12,30 +12,27 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Hibernate SessionFactory-based implementation of ShipmentDao.
+ * Hibernate SessionFactory-based implementation of shipment persistence operations.
  */
 @Repository
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class ShipmentDaoImpl implements ShipmentDao {
+public class ShipmentDaoImpl {
 
     private static final Logger log = LoggerFactory.getLogger(ShipmentDaoImpl.class);
 
     private final SessionFactory sessionFactory;
 
-    @Override
     public Shipment save(Shipment shipment) {
         log.debug("DAO: Persisting new shipment with tracking: {}", shipment.getTrackingNumber());
         sessionFactory.getCurrentSession().persist(shipment);
         return shipment;
     }
 
-    @Override
     public Shipment update(Shipment shipment) {
         log.debug("DAO: Merging shipment with id: {}", shipment.getId());
         return sessionFactory.getCurrentSession().merge(shipment);
     }
 
-    @Override
     public Optional<Shipment> findById(Long id) {
         log.debug("DAO: Finding shipment by id: {}", id);
         return Optional.ofNullable(
@@ -43,7 +40,6 @@ public class ShipmentDaoImpl implements ShipmentDao {
         );
     }
 
-    @Override
     public Optional<Shipment> findByTrackingNumber(String trackingNumber) {
         log.debug("DAO: Finding shipment by tracking number: {}", trackingNumber);
         return sessionFactory.getCurrentSession()
@@ -52,7 +48,6 @@ public class ShipmentDaoImpl implements ShipmentDao {
                 .uniqueResultOptional();
     }
 
-    @Override
     public List<Shipment> findByOrderId(Long orderId) {
         log.debug("DAO: Finding shipments for order id: {}", orderId);
         return sessionFactory.getCurrentSession()
@@ -61,7 +56,6 @@ public class ShipmentDaoImpl implements ShipmentDao {
                 .getResultList();
     }
 
-    @Override
     public List<Shipment> findAll() {
         log.debug("DAO: Fetching all shipments");
         return sessionFactory.getCurrentSession()

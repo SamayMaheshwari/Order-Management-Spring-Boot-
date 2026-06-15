@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import practice.samay.ordermanagementsystem.dao.HistoryDao;
+import practice.samay.ordermanagementsystem.dao.HistoryDaoImpl;
 import practice.samay.ordermanagementsystem.event.HistoryEvent;
 import practice.samay.ordermanagementsystem.model.HistoryRecord;
 
@@ -12,7 +12,7 @@ import practice.samay.ordermanagementsystem.model.HistoryRecord;
 @RequiredArgsConstructor
 public class HistoryKafkaConsumer {
 
-	private final HistoryDao historyDao;
+	private final HistoryDaoImpl historyDao;
 
 	@KafkaListener(topics = "${app.kafka.history-topic}", groupId = "${spring.kafka.consumer.group-id}")
 	@Transactional

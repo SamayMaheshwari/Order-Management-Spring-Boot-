@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import practice.samay.ordermanagementsystem.dto.request.OrderRequest;
 import practice.samay.ordermanagementsystem.dto.response.ApiResponse;
 import practice.samay.ordermanagementsystem.dto.response.OrderResponse;
-import practice.samay.ordermanagementsystem.service.OrderService;
+import practice.samay.ordermanagementsystem.service.OrderServiceImpl;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class OrderController {
 
     private static final Logger log = LoggerFactory.getLogger(OrderController.class);
 
-    private final OrderService orderService;
+    private final OrderServiceImpl orderService;
 
     //  CREATE
 
@@ -94,21 +94,21 @@ public class OrderController {
 
     //  UPDATE
 
-    @PutMapping("/{id}/status")
-    @Operation(
-        summary = "Update order status",
-        description = "Manually updates the status of an order. " +
-                      "Valid transitions: PENDING → CONFIRMED → PROCESSING → SHIPPED → DELIVERED. " +
-                      "Use DELETE endpoint to cancel."
-    )
-    public ResponseEntity<ApiResponse<OrderResponse>> updateOrderStatus(
-            @Parameter(description = "Order ID", example = "1") @PathVariable Long id,
-            @Parameter(description = "New status value", example = "PROCESSING")
-            @RequestParam String status) {
-        log.info("PUT /api/v1/orders/{}/status – new status: {}", id, status);
-        return ResponseEntity.ok(ApiResponse.success(
-                "Order status updated successfully", orderService.updateOrderStatus(id, status)));
-    }
+//    @PutMapping("/{id}/status")
+//    @Operation(
+//        summary = "Update order status",
+//        description = "Manually updates the status of an order. " +
+//                      "Valid transitions: PENDING → CONFIRMED → PROCESSING → SHIPPED → DELIVERED. " +
+//                      "Use DELETE endpoint to cancel."
+//    )
+//    public ResponseEntity<ApiResponse<OrderResponse>> updateOrderStatus(
+//            @Parameter(description = "Order ID", example = "1") @PathVariable Long id,
+//            @Parameter(description = "New status value", example = "PROCESSING")
+//            @RequestParam String status) {
+//        log.info("PUT /api/v1/orders/{}/status – new status: {}", id, status);
+//        return ResponseEntity.ok(ApiResponse.success(
+//                "Order status updated successfully", orderService.updateOrderStatus(id, status)));
+//    }
 
     //  DELETE
 

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import practice.samay.ordermanagementsystem.cache.OrderCacheService;
 import practice.samay.ordermanagementsystem.cache.PaymentCacheService;
-import practice.samay.ordermanagementsystem.dao.OrderDao;
-import practice.samay.ordermanagementsystem.dao.PaymentDao;
+import practice.samay.ordermanagementsystem.dao.OrderDaoImpl;
+import practice.samay.ordermanagementsystem.dao.PaymentDaoImpl;
 import practice.samay.ordermanagementsystem.dto.request.PaymentRequest;
 import practice.samay.ordermanagementsystem.dto.response.PaymentResponse;
 import practice.samay.ordermanagementsystem.dto.response.OrderResponse;
@@ -28,18 +28,17 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class PaymentServiceImpl implements PaymentService {
+public class PaymentServiceImpl {
 
     private static final Logger log = LoggerFactory.getLogger(PaymentServiceImpl.class);
 
-    private final PaymentDao paymentDao;
-    private final OrderDao orderDao;
+    private final PaymentDaoImpl paymentDao;
+    private final OrderDaoImpl orderDao;
     private final PaymentCacheService paymentCacheService;
     private final OrderCacheService orderCacheService;
     private final HistoryEventPublisher historyEventPublisher;
 
 
-    @Override
     @Transactional
     public PaymentResponse processPayment(PaymentRequest request) {
         log.info("Processing payment request for order id: {} | method: {}", request.getOrderId(), request.getPaymentMethod());
@@ -131,7 +130,6 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentResponse;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public PaymentResponse getPaymentById(Long id) {
         log.debug("Fetching payment by id: {}", id);
@@ -146,7 +144,6 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentResponse;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public PaymentResponse getPaymentByReference(String reference) {
         log.debug("Fetching payment by reference: {}", reference);
@@ -161,7 +158,6 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentResponse;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<PaymentResponse> getPaymentsByOrderId(Long orderId) {
         log.debug("Fetching payments for order id: {}", orderId);
@@ -178,7 +174,6 @@ public class PaymentServiceImpl implements PaymentService {
         return payments;
     }
 
-    @Override
     @Transactional
     public PaymentResponse updatePaymentStatus(Long id, String status) {
         log.info("Updating payment {} status to: {}", id, status);
@@ -216,21 +211,28 @@ public class PaymentServiceImpl implements PaymentService {
         return OrderResponse.builder()
                 .id(order.getId())
                 .orderNumber(order.getOrderNumber())
-                .customerName(order.getCustomerName())
-                .customerEmail(order.getCustomerEmail())
-                .customerPhone(order.getCustomerPhone())
-                .shippingAddress(order.getShippingAddress())
-                .productCode(order.getProductCode())
-                .productName(order.getProductName())
-                .quantity(order.getQuantity())
-                .unitPrice(order.getUnitPrice())
-                .totalAmount(order.getTotalAmount())
-                .status(order.getStatus().name())
-                .notes(order.getNotes())
-                .createdAt(order.getCreatedAt())
-                .updatedAt(order.getUpdatedAt())
                 .build();
     }
+
+//    private OrderResponse toOrderResponse(Order order) {
+//        return OrderResponse.builder()
+//                .id(order.getId())
+//                .orderNumber(order.getOrderNumber())
+//                .customerName(order.getCustomerName())
+//                .customerEmail(order.getCustomerEmail())
+//                .customerPhone(order.getCustomerPhone())
+//                .shippingAddress(order.getShippingAddress())
+//                .productCode(order.getProductCode())
+//                .productName(order.getProductName())
+//                .quantity(order.getQuantity())
+//                .unitPrice(order.getUnitPrice())
+//                .totalAmount(order.getTotalAmount())
+//                .status(order.getStatus().name())
+//                .notes(order.getNotes())
+//                .createdAt(order.getCreatedAt())
+//                .updatedAt(order.getUpdatedAt())
+//                .build();
+//    }
 
     private String generatePaymentReference() {
         return "PAY-" + System.currentTimeMillis() + "-" + String.format("%04d", (int) (Math.random() * 10000));
@@ -247,9 +249,23 @@ public class PaymentServiceImpl implements PaymentService {
                 .status(payment.getStatus().name())
                 .transactionId(payment.getTransactionId())
                 .remarks(payment.getRemarks())
-                .paidAt(payment.getPaidAt())
-                .createdAt(payment.getCreatedAt())
-                .updatedAt(payment.getUpdatedAt())
                 .build();
     }
+
+//    private PaymentResponse toResponse(Payment payment, String orderNumber) {
+//        return PaymentResponse.builder()
+//                .id(payment.getId())
+//                .paymentReference(payment.getPaymentReference())
+//                .orderId(payment.getOrderId())
+//                .orderNumber(orderNumber)
+//                .amount(payment.getAmount())
+//                .paymentMethod(payment.getPaymentMethod().name())
+//                .status(payment.getStatus().name())
+//                .transactionId(payment.getTransactionId())
+//                .remarks(payment.getRemarks())
+//                .paidAt(payment.getPaidAt())
+//                .createdAt(payment.getCreatedAt())
+//                .updatedAt(payment.getUpdatedAt())
+//                .build();
+//    }
 }

@@ -1,6 +1,5 @@
 package practice.samay.ordermanagementsystem.dao;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -15,26 +14,23 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class InventoryDaoImpl implements InventoryDao {
+public class InventoryDaoImpl {
 
     private static final Logger log = LoggerFactory.getLogger(InventoryDaoImpl.class);
 
     private final SessionFactory sessionFactory;
 
-    @Override
     public Inventory save(Inventory inventory) {
         log.debug("DAO: Persisting inventory for product: {}", inventory.getProductCode());
         sessionFactory.getCurrentSession().persist(inventory);
         return inventory;
     }
 
-    @Override
     public Inventory update(Inventory inventory) {
         log.debug("DAO: Merging inventory for product: {}", inventory.getProductCode());
         return sessionFactory.getCurrentSession().merge(inventory);
     }
 
-    @Override
     public Optional<Inventory> findById(Long id) {
         log.debug("DAO: Finding inventory by id: {}", id);
         return Optional.ofNullable(
@@ -42,7 +38,6 @@ public class InventoryDaoImpl implements InventoryDao {
         );
     }
 
-    @Override
     public Optional<Inventory> findByProductCode(String productCode) {
         log.debug("DAO: Finding inventory by product code: {}", productCode);
         return sessionFactory.getCurrentSession()
@@ -51,7 +46,6 @@ public class InventoryDaoImpl implements InventoryDao {
                 .uniqueResultOptional();
     }
 
-    @Override
     public List<Inventory> findAll() {
         log.debug("DAO: Fetching all inventory records");
         return sessionFactory.getCurrentSession()
@@ -59,7 +53,6 @@ public class InventoryDaoImpl implements InventoryDao {
                 .getResultList();
     }
 
-    @Override
     public List<Inventory> findLowStock(int threshold) {
         log.debug("DAO: Fetching inventory with available quantity <= {}", threshold);
         return sessionFactory.getCurrentSession()

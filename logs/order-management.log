@@ -1852,3 +1852,212 @@
 2026-06-15 15:13:48.807 [http-nio-8080-exec-4] INFO  o.springdoc.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 229 ms
 2026-06-15 15:13:50.229 [http-nio-8080-exec-5] DEBUG p.s.o.controller.OrderController - GET /api/v1/orders
 2026-06-15 15:13:50.231 [http-nio-8080-exec-5] DEBUG p.s.o.service.OrderServiceImpl - Fetching all orders
+2026-06-15 18:34:01.878 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Revoke previously assigned partitions history-events-0
+2026-06-15 18:34:01.879 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - order-management-history-group: partitions revoked: [history-events-0]
+2026-06-15 18:34:01.880 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Member consumer-order-management-history-group-1-189f22ab-801c-4565-bb9d-2aabe8b3839d sending LeaveGroup request to coordinator kap-Latitude-5440:9092 (id: 2147483647 rack: null) due to the consumer unsubscribed from all topics
+2026-06-15 18:34:01.881 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-15 18:34:01.882 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-15 18:34:01.882 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ClassicKafkaConsumer - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Unsubscribed all topics or patterns and assigned partitions
+2026-06-15 18:34:01.885 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-15 18:34:01.885 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-15 18:34:01.922 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.common.metrics.Metrics - Metrics scheduler closed
+2026-06-15 18:34:01.922 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-06-15 18:34:01.922 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-06-15 18:34:01.922 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.common.metrics.Metrics - Metrics reporters closed
+2026-06-15 18:34:01.930 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-order-management-history-group-1 unregistered
+2026-06-15 18:34:01.931 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - order-management-history-group: Consumer stopped
+2026-06-15 18:34:01.933 [SpringApplicationShutdownHook] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-15 18:34:01.935 [tomcat-shutdown] INFO  o.s.b.w.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-06-15 18:34:01.947 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown initiated...
+2026-06-15 18:34:01.948 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Shutdown completed.
+2026-06-15 18:38:36.685 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-06-15 18:38:36.701 [main] INFO  p.s.o.OrderManagementSystemApplication - Starting OrderManagementSystemApplication using Java 21.0.11 with PID 48909 (/home/samay.maheshwari/SPRINGBOOT/order-management-system/target/classes started by samay.maheshwari in /home/samay.maheshwari/SPRINGBOOT/order-management-system)
+2026-06-15 18:38:36.702 [main] DEBUG p.s.o.OrderManagementSystemApplication - Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-15 18:38:36.702 [main] INFO  p.s.o.OrderManagementSystemApplication - No active profile set, falling back to 1 default profile: "default"
+2026-06-15 18:38:37.113 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-06-15 18:38:37.114 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-06-15 18:38:37.130 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2026-06-15 18:38:37.450 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-06-15 18:38:37.455 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-06-15 18:38:37.456 [main] INFO  o.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-06-15 18:38:37.456 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-15 18:38:37.475 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-06-15 18:38:37.476 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 755 ms
+2026-06-15 18:38:37.659 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Starting...
+2026-06-15 18:38:37.756 [main] INFO  com.zaxxer.hikari.pool.HikariPool - OrderManagementPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@68df8c6
+2026-06-15 18:38:37.756 [main] INFO  com.zaxxer.hikari.HikariDataSource - OrderManagementPool - Start completed.
+2026-06-15 18:38:37.784 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-06-15 18:38:37.803 [main] INFO  o.h.c.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-06-15 18:38:37.864 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-15 18:38:37.873 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (OrderManagementPool)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-15 18:38:37.876 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@813ab53) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5030997b)
+2026-06-15 18:38:37.877 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@62c47480) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7de2bdc7)
+2026-06-15 18:38:37.877 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@683ed81b) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3c116f26)
+2026-06-15 18:38:37.877 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7db06c50) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1554eaa4)
+2026-06-15 18:38:37.877 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@b340615) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3c6b300a)
+2026-06-15 18:38:37.877 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@4247093b) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7074da1d)
+2026-06-15 18:38:37.877 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5bdb6ea8) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3e55eeb9)
+2026-06-15 18:38:37.877 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@44a13699) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1253b822)
+2026-06-15 18:38:37.877 [main] DEBUG o.h.t.descriptor.sql.spi.DdlTypeRegistry - addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@127d2aee) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3cc2e3e)
+2026-06-15 18:38:38.350 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-15 18:38:38.374 [main] DEBUG org.hibernate.SQL - 
+    alter table orders 
+       modify column status enum ('CANCELLED','CONFIRMED','DELIVERED','PENDING','PROCESSING','SHIPPED') not null
+2026-06-15 18:38:38.383 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column payment_method enum ('CASH_ON_DELIVERY','CREDIT_CARD','DEBIT_CARD','NET_BANKING','UPI','WALLET') not null
+2026-06-15 18:38:38.389 [main] DEBUG org.hibernate.SQL - 
+    alter table payments 
+       modify column status enum ('COMPLETED','FAILED','PENDING','REFUNDED') not null
+2026-06-15 18:38:38.393 [main] DEBUG org.hibernate.SQL - 
+    alter table shipments 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED') not null
+2026-06-15 18:38:38.399 [main] DEBUG org.hibernate.SQL - 
+    alter table tracking_events 
+       modify column status enum ('DELIVERED','DISPATCHED','IN_TRANSIT','OUT_FOR_DELIVERY','PREPARING','RETURNED')
+2026-06-15 18:38:38.810 [main] INFO  o.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-06-15 18:38:38.816 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-06-15 18:38:38.834 [main] INFO  o.a.k.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-order-management-history-group-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = order-management-history-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.JsonDeserializer
+
+2026-06-15 18:38:38.856 [main] INFO  o.a.k.c.t.i.KafkaMetricsCollector - initializing Kafka metrics collector
+2026-06-15 18:38:38.899 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.9.2
+2026-06-15 18:38:38.899 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: 5e9866f43ab8e7e4
+2026-06-15 18:38:38.899 [main] INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1781528918898
+2026-06-15 18:38:38.901 [main] INFO  o.a.k.c.c.internals.ClassicKafkaConsumer - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Subscribed to topic(s): history-events
+2026-06-15 18:38:38.911 [main] INFO  p.s.o.OrderManagementSystemApplication - Started OrderManagementSystemApplication in 2.37 seconds (process running for 2.819)
+2026-06-15 18:38:38.931 [main] INFO  p.s.o.config.DataSeeder - Checking if inventory needs seeding...
+2026-06-15 18:38:38.931 [main] DEBUG p.s.o.dao.InventoryDaoImpl - DAO: Fetching all inventory records
+2026-06-15 18:38:39.053 [main] DEBUG org.hibernate.SQL - 
+    select
+        i1_0.id,
+        i1_0.available_quantity,
+        i1_0.created_at,
+        i1_0.product_code,
+        i1_0.product_name,
+        i1_0.reorder_level,
+        i1_0.reserved_quantity,
+        i1_0.unit_price,
+        i1_0.updated_at 
+    from
+        inventory i1_0 
+    order by
+        i1_0.product_code
+2026-06-15 18:38:39.072 [main] INFO  p.s.o.config.DataSeeder - Inventory already contains 1 items. Skipping seeding.
+2026-06-15 18:38:39.097 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Cluster ID: zO05nuOGSM2C6qV1GGzhjA
+2026-06-15 18:38:39.098 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Discovered group coordinator kap-Latitude-5440:9092 (id: 2147483647 rack: null)
+2026-06-15 18:38:39.099 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] (Re-)joining group
+2026-06-15 18:38:39.109 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Request joining group due to: need to re-join with the given member-id: consumer-order-management-history-group-1-364acbd7-d029-4d86-98b6-0216d57bb3ab
+2026-06-15 18:38:39.110 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] (Re-)joining group
+2026-06-15 18:38:39.113 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Successfully joined group with generation Generation{generationId=11, memberId='consumer-order-management-history-group-1-364acbd7-d029-4d86-98b6-0216d57bb3ab', protocol='range'}
+2026-06-15 18:38:39.118 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Finished assignment for group at generation 11: {consumer-order-management-history-group-1-364acbd7-d029-4d86-98b6-0216d57bb3ab=Assignment(partitions=[history-events-0])}
+2026-06-15 18:38:39.129 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Successfully synced group in generation Generation{generationId=11, memberId='consumer-order-management-history-group-1-364acbd7-d029-4d86-98b6-0216d57bb3ab', protocol='range'}
+2026-06-15 18:38:39.130 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Notifying assignor about the new Assignment(partitions=[history-events-0])
+2026-06-15 18:38:39.131 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.i.ConsumerRebalanceListenerInvoker - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Adding newly assigned partitions: history-events-0
+2026-06-15 18:38:39.134 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.ConsumerCoordinator - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Found no committed offset for partition history-events-0
+2026-06-15 18:38:39.141 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.c.internals.SubscriptionState - [Consumer clientId=consumer-order-management-history-group-1, groupId=order-management-history-group] Resetting offset for partition history-events-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[kap-Latitude-5440:9092 (id: 0 rack: null)], epoch=0}}.
+2026-06-15 18:38:39.142 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer - order-management-history-group: partitions assigned: [history-events-0]

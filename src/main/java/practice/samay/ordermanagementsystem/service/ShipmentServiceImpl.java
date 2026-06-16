@@ -26,10 +26,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Service implementation for Shipment business operations.
- * Manages shipment creation, status updates, and inventory deduction.
- */
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ShipmentServiceImpl {
@@ -44,10 +40,7 @@ public class ShipmentServiceImpl {
     private final InventoryCacheService inventoryCacheService;
     private final HistoryEventPublisher historyEventPublisher;
 
-    /**
-     * Creates a shipment for a confirmed/processing order.
-     * Updates order status to PROCESSING and deducts reserved inventory.
-     */
+
     @Transactional
     public ShipmentResponse createShipment(ShipmentRequest request) {
         log.info("Creating shipment for order id: {}", request.getOrderId());
@@ -163,10 +156,7 @@ public class ShipmentServiceImpl {
         });
     }
 
-    /**
-     * Updates shipment status with cascading order status updates.
-     * DISPATCHED → sets shippedAt; DELIVERED → sets deliveredAt and marks order DELIVERED.
-     */
+
     @Transactional
     public ShipmentResponse updateShipmentStatus(Long id, String status) {
         log.info("Updating shipment {} status to: {}", id, status);
@@ -215,7 +205,7 @@ public class ShipmentServiceImpl {
         }
     }
 
-    // ─── Private Helpers ──────────────────────────────────────────────────────
+    // ─── Private Helpers
 
     private Shipment findShipmentOrThrow(Long id) {
         return shipmentDao.findById(id)
@@ -233,25 +223,6 @@ public class ShipmentServiceImpl {
                 .build();
     }
 
-//    private OrderResponse toOrderResponse(Order order) {
-//        return OrderResponse.builder()
-//                .id(order.getId())
-//                .orderNumber(order.getOrderNumber())
-//                .customerName(order.getCustomerName())
-//                .customerEmail(order.getCustomerEmail())
-//                .customerPhone(order.getCustomerPhone())
-//                .shippingAddress(order.getShippingAddress())
-//                .productCode(order.getProductCode())
-//                .productName(order.getProductName())
-//                .quantity(order.getQuantity())
-//                .unitPrice(order.getUnitPrice())
-//                .totalAmount(order.getTotalAmount())
-//                .status(order.getStatus().name())
-//                .notes(order.getNotes())
-//                .createdAt(order.getCreatedAt())
-//                .updatedAt(order.getUpdatedAt())
-//                .build();
-//    }
 
     private String generateTrackingNumber() {
         return "TRK-" + System.currentTimeMillis() + "-" + String.format("%04d", (int) (Math.random() * 10000));
@@ -270,21 +241,4 @@ public class ShipmentServiceImpl {
                 .build();
     }
 
-//    private ShipmentResponse toResponse(Shipment shipment, String orderNumber) {
-//        return ShipmentResponse.builder()
-//                .id(shipment.getId())
-//                .orderId(shipment.getOrderId())
-//                .orderNumber(orderNumber)
-//                .trackingNumber(shipment.getTrackingNumber())
-//                .carrier(shipment.getCarrier())
-//                .status(shipment.getStatus().name())
-//                .shippingAddress(shipment.getShippingAddress())
-//                .weight(shipment.getWeight())
-//                .estimatedDelivery(shipment.getEstimatedDelivery())
-//                .shippedAt(shipment.getShippedAt())
-//                .deliveredAt(shipment.getDeliveredAt())
-//                .createdAt(shipment.getCreatedAt())
-//                .updatedAt(shipment.getUpdatedAt())
-//                .build();
-//    }
 }

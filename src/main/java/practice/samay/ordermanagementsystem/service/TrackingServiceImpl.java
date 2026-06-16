@@ -24,10 +24,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Service implementation for Tracking event business operations.
- * Adds tracking checkpoints and propagates status back to the Shipment.
- */
+
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TrackingServiceImpl {
@@ -41,10 +38,6 @@ public class TrackingServiceImpl {
     private final ShipmentCacheService shipmentCacheService;
     private final HistoryEventPublisher historyEventPublisher;
 
-    /**
-     * Adds a tracking event to a shipment.
-     * Updates the shipment's status and timestamps accordingly.
-     */
     @Transactional
     public TrackingResponse addTrackingEvent(TrackingRequest request) {
         log.info("Adding tracking event for shipment id: {} | status: {}", request.getShipmentId(), request.getStatus());
@@ -135,18 +128,6 @@ public class TrackingServiceImpl {
                 .build();
     }
 
-//    private TrackingResponse toResponse(Tracking tracking, String trackingNumber) {
-//        return TrackingResponse.builder()
-//                .id(tracking.getId())
-//                .shipmentId(tracking.getShipmentId())
-//                .trackingNumber(trackingNumber)
-//                .location(tracking.getLocation())
-//                .status(tracking.getStatus() != null ? tracking.getStatus().name() : null)
-//                .description(tracking.getDescription())
-//                .eventTimestamp(tracking.getEventTimestamp())
-//                .createdAt(tracking.getCreatedAt())
-//                .build();
-//    }
 
     private String resolveOrderNumber(Long orderId) {
         return orderDao.findById(orderId).map(Order::getOrderNumber).orElse(null);
@@ -164,21 +145,5 @@ public class TrackingServiceImpl {
                 .build();
     }
 
-//    private ShipmentResponse toShipmentResponse(Shipment shipment, String orderNumber) {
-//        return ShipmentResponse.builder()
-//                .id(shipment.getId())
-//                .orderId(shipment.getOrderId())
-//                .orderNumber(orderNumber)
-//                .trackingNumber(shipment.getTrackingNumber())
-//                .carrier(shipment.getCarrier())
-//                .status(shipment.getStatus().name())
-//                .shippingAddress(shipment.getShippingAddress())
-//                .weight(shipment.getWeight())
-//                .estimatedDelivery(shipment.getEstimatedDelivery())
-//                .shippedAt(shipment.getShippedAt())
-//                .deliveredAt(shipment.getDeliveredAt())
-//                .createdAt(shipment.getCreatedAt())
-//                .updatedAt(shipment.getUpdatedAt())
-//                .build();
-//    }
+
 }

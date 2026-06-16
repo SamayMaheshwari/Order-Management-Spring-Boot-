@@ -92,24 +92,6 @@ public class OrderController {
                 "Orders retrieved for status: " + status.toUpperCase(), orders));
     }
 
-    //  UPDATE
-
-//    @PutMapping("/{id}/status")
-//    @Operation(
-//        summary = "Update order status",
-//        description = "Manually updates the status of an order. " +
-//                      "Valid transitions: PENDING → CONFIRMED → PROCESSING → SHIPPED → DELIVERED. " +
-//                      "Use DELETE endpoint to cancel."
-//    )
-//    public ResponseEntity<ApiResponse<OrderResponse>> updateOrderStatus(
-//            @Parameter(description = "Order ID", example = "1") @PathVariable Long id,
-//            @Parameter(description = "New status value", example = "PROCESSING")
-//            @RequestParam String status) {
-//        log.info("PUT /api/v1/orders/{}/status – new status: {}", id, status);
-//        return ResponseEntity.ok(ApiResponse.success(
-//                "Order status updated successfully", orderService.updateOrderStatus(id, status)));
-//    }
-
     //  DELETE
 
     @DeleteMapping("/{id}")
@@ -125,4 +107,5 @@ public class OrderController {
         orderService.cancelOrder(id);
         return ResponseEntity.ok(ApiResponse.success("Order cancelled successfully and inventory restored", null));
     }
+
 }

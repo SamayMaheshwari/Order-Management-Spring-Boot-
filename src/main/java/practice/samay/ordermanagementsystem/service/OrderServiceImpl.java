@@ -222,23 +222,4 @@ public class OrderServiceImpl {
                 .build();
     }
 
-//    private OrderResponse toResponse(Order order) {
-//        return OrderResponse.builder()
-//                .id(order.getId())
-//                .orderNumber(order.getOrderNumber())
-//                .customerName(order.getCustomerName())
-//                .customerEmail(order.getCustomerEmail())
-//                .customerPhone(order.getCustomerPhone())
-//                .shippingAddress(order.getShippingAddress())
-//                .productCode(order.getProductCode())
-//                .productName(order.getProductName())
-//                .quantity(order.getQuantity())
-//                .unitPrice(order.getUnitPrice())
-//                .totalAmount(order.getTotalAmount())
-//                .status(order.getStatus().name())
-//                .notes(order.getNotes())
-//                .createdAt(order.getCreatedAt())
-//                .updatedAt(order.getUpdatedAt())
-//                .build();
-//    }
 }

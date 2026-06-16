@@ -80,21 +80,4 @@ public class PaymentController {
         return ResponseEntity.ok(ApiResponse.success(
                 "Payments retrieved for order id: " + orderId, payments));
     }
-
-    //  UPDATE
-
-//    @PutMapping("/{id}/status")
-//    @Operation(
-//        summary = "Update payment status",
-//        description = "Manually updates a payment status. " +
-//                      "Valid values: PENDING, COMPLETED, FAILED, REFUNDED"
-//    )
-//    public ResponseEntity<ApiResponse<PaymentResponse>> updatePaymentStatus(
-//            @Parameter(description = "Payment ID", example = "1") @PathVariable Long id,
-//            @Parameter(description = "New payment status", example = "REFUNDED")
-//            @RequestParam String status) {
-//        log.info("PUT /api/v1/payments/{}/status – new status: {}", id, status);
-//        return ResponseEntity.ok(ApiResponse.success(
-//                "Payment status updated successfully", paymentService.updatePaymentStatus(id, status)));
-//    }
 }

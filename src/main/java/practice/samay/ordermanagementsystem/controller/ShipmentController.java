@@ -93,22 +93,5 @@ public class ShipmentController {
                 "Shipments retrieved for order id: " + orderId, shipments));
     }
 
-    //  UPDATE
 
-////    @PutMapping("/{id}/status")
-////    @Operation(
-////        summary = "Update shipment status",
-////        description = "Updates the status of a shipment. " +
-////                      "DISPATCHED → sets shippedAt and marks order SHIPPED. " +
-////                      "DELIVERED → sets deliveredAt and marks order DELIVERED. " +
-////                      "Valid values: PREPARING, DISPATCHED, IN_TRANSIT, OUT_FOR_DELIVERY, DELIVERED, RETURNED"
-////    )
-//    public ResponseEntity<ApiResponse<ShipmentResponse>> updateShipmentStatus(
-//            @Parameter(description = "Shipment ID", example = "1") @PathVariable Long id,
-//            @Parameter(description = "New shipment status", example = "IN_TRANSIT")
-//            @RequestParam String status) {
-//        log.info("PUT /api/v1/shipments/{}/status – new status: {}", id, status);
-//        return ResponseEntity.ok(ApiResponse.success(
-//                "Shipment status updated successfully", shipmentService.updateShipmentStatus(id, status)));
-//    }
 }

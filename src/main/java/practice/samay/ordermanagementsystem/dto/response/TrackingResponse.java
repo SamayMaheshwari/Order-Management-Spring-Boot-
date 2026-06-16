@@ -9,9 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-/**
- * Response DTO for a Tracking event returned to the client.
- */
 @Data
 @Builder
 @NoArgsConstructor
@@ -39,9 +36,5 @@ public class TrackingResponse {
             example = "Package received at Mumbai sorting facility")
     private String description;
 
-//    @Schema(description = "Timestamp of the actual tracking event")
-//    private LocalDateTime eventTimestamp;
-//
-//    @Schema(description = "Record creation timestamp")
-//    private LocalDateTime createdAt;
+
 }

@@ -214,26 +214,6 @@ public class PaymentServiceImpl {
                 .build();
     }
 
-//    private OrderResponse toOrderResponse(Order order) {
-//        return OrderResponse.builder()
-//                .id(order.getId())
-//                .orderNumber(order.getOrderNumber())
-//                .customerName(order.getCustomerName())
-//                .customerEmail(order.getCustomerEmail())
-//                .customerPhone(order.getCustomerPhone())
-//                .shippingAddress(order.getShippingAddress())
-//                .productCode(order.getProductCode())
-//                .productName(order.getProductName())
-//                .quantity(order.getQuantity())
-//                .unitPrice(order.getUnitPrice())
-//                .totalAmount(order.getTotalAmount())
-//                .status(order.getStatus().name())
-//                .notes(order.getNotes())
-//                .createdAt(order.getCreatedAt())
-//                .updatedAt(order.getUpdatedAt())
-//                .build();
-//    }
-
     private String generatePaymentReference() {
         return "PAY-" + System.currentTimeMillis() + "-" + String.format("%04d", (int) (Math.random() * 10000));
     }
@@ -252,20 +232,5 @@ public class PaymentServiceImpl {
                 .build();
     }
 
-//    private PaymentResponse toResponse(Payment payment, String orderNumber) {
-//        return PaymentResponse.builder()
-//                .id(payment.getId())
-//                .paymentReference(payment.getPaymentReference())
-//                .orderId(payment.getOrderId())
-//                .orderNumber(orderNumber)
-//                .amount(payment.getAmount())
-//                .paymentMethod(payment.getPaymentMethod().name())
-//                .status(payment.getStatus().name())
-//                .transactionId(payment.getTransactionId())
-//                .remarks(payment.getRemarks())
-//                .paidAt(payment.getPaidAt())
-//                .createdAt(payment.getCreatedAt())
-//                .updatedAt(payment.getUpdatedAt())
-//                .build();
-//    }
+
 }
